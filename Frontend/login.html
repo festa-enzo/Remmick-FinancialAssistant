@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Remmick</title>
+    <link rel="stylesheet" href="style/login.css">
+</head>
+
+<body>
+<div class="login-box">
+    <div class="header">
+        <h2>Remmick Finance Help</h2>
+        <p>Faça login para continuar</p>
+    </div>
+
+    <div class="form-container">
+        <form id="Loginform">
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" placeholder="seu@email.com" required>
+            </div>
+
+            <div>
+                <label for="form-group">Senha</label>
+                <input type="password" id="password" placeholder="Sua senha" required>
+            </div>
+
+            <button type="submit" class="btn-login">Entrar</button>
+        </form>
+        <div id="mensage" class="error-msg"></div>
+
+        <div class="footer">
+            Não tem conta? <a href="register.html">Cadastre-se</a>
+        </div>
+    </div>
+</div>
+
+<script src="js/login.js"></script>
+    
+</body>
+</html>
