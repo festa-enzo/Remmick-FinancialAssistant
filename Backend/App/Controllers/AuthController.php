@@ -1,29 +1,27 @@
 <?php
 
-require_once __DIR__ . '/../../Services/ExpenseService.php';
+require_once __DIR__ . '/../../Services/AuthService.php';
 require_once __DIR__ . '/../../Core/Response.php';
 require_once __DIR__ . '/../../Core/Auth.php';
 
-class ExpenseController {
+class AuthController {
 
-    private ExpenseService $expenseService;
+    private AuthService $authService;
 
     public function __construct() {
-        $this->expenseService = new ExpenseService();
+        $this->authService = new AuthService();
     }
 
-    public function createExpense(){
+    public function register(){
         try {
             $conteudoBruto = file_get_contents('php://input');
             $data = json_decode($conteudoBruto, true, 512, JSON_THROW_ON_ERROR);
-        
-            $userId = Auth::requireAuth();
-            
-            $expense = $this->expenseService->createExpense($userId, $data);
+                
+            $user = $this->authService->register($data);
 
             Response::json([
                 'success' => true,
-                'data' => $expense
+                'data' => $user
             ], 201);
 
         } catch (JsonException $e) {
@@ -39,5 +37,5 @@ class ExpenseController {
             ], 400);
         }
 
-}
+    }
 }

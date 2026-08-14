@@ -7,13 +7,13 @@ $routes = [
     'POST' => [
         '/api/register' => ['AuthController', 'register'],
         '/api/login'    => ['AuthController', 'login'],
-        '/api/tasks'           => ['TaskController', 'create'],
-        '/api/tasks/move'      => ['TaskController', 'move'],
+        '/api/expense'           => ['ExpenseController', 'createExpense'],
+        '/api/expense/move'      => ['ExpenseController', 'move'],
         // '/api/logout'   => ['AuthController', 'logout'],
     ],
 
     'GET' => [
-        '/api/tasks'    => ['TaskController', 'index'],
+        '/api/expense'    => ['ExpenseController', 'index'],
         '/api/columns'  => ['ColumnController', 'index'],
     ],
 

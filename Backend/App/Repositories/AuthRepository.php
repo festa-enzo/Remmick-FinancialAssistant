@@ -2,13 +2,10 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/BaseRepository.php';
-use PDO;
 
 class AuthRepository extends BaseRepository
 {
     protected string $table = 'users';
-
-    protected array $sortableColumns = ['id', 'name', 'email', 'created_at'];
 
     public function findByEmail(string $email): ?array
     {
@@ -23,9 +20,6 @@ class AuthRepository extends BaseRepository
 
     public function createUser(array $data): array
     {
-        $data['password']   = password_hash($data['password'], PASSWORD_BCRYPT, ['cost' => 12]);
-        $data['created_at'] = date('Y-m-d H:i:s');
-
         return $this->create($data);
     }
 
