@@ -38,4 +38,34 @@ class AuthController {
         }
 
     }
+
+    public function login() {
+        try {
+            $conteudoBruto = file_get_contents('php://input');
+            $data = json_decode($conteudoBruto, true, 512, JSON_THROW_ON_ERROR);
+
+            $result = $this->authService->login($data);
+
+            Response::json([
+                'success'     => true,
+                'accessToken' => $result['accessToken'],
+                'user'        => [
+                    'id'   => $result['user']['id'],
+                    'name' => $result['user']['name']
+                ]
+            ]);
+
+        } catch (JsonException $e) {
+            Response::json([
+                'success' => false,
+                'message' => 'JSON inválido'
+            ], 400);
+
+        } catch (Exception $e) {
+            Response::json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
 }

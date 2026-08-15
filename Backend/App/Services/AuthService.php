@@ -1,13 +1,21 @@
 <?php
 
 require_once __DIR__ . '/../Repositories/AuthRepository';
+require_once __DIR__ . '/../Core/Jwt';
+require_once __DIR__ . '/../../Config/Database.php';
+use PDO;
+
 
 class AuthService {
 
+    protected PDO $db;
     private AuthRepository $authRepository;
+    private JWTHandler $jwtHandler;
 
     public function __construct() {
+        $this->db = Database::getConnection(); 
 
+        $this->jwtHandler = new JWTHandler($this->db);
         $this->authRepository = new AuthRepository();
     }
 
@@ -31,14 +39,43 @@ class AuthService {
         }
 
         $data['password'] =  password_hash($data['password'], PASSWORD_DEFAULT);
-
         $user = $this->authRepository->createUser($data);
-
         unset($user['password']);
 
         return $user;
         }
+
+    public function login(array $data): array {
+
+        if(!isset($data['email'], $data['password'])){
+            throw new Exception('Dados obrigatórios não informados');
+        }
+
+        $user = $this->authRepository->findByEmail($data['email']);
+
+        if (!$user || !password_verify($data['password'], $user['password'])) {
+            throw new InvalidArgumentException('E-mail ou senha inválidos');
+        }
+
+        $accessToken = $this->jwtHandler->generateToken($user);
+        $refreshToken = $this->jwtHandler->generateRefreshToken($user['id']);
+
+        setcookie('refresh_token', $refreshToken, [
+            'expires'  => time() + $_ENV['JWT_REFRESH_EXPIRATION'], // 7 dias
+            'path'     => '/',
+            'httponly' => true,
+            'secure'   => false,
+            'samesite' => 'Strict'
+        ]);
+
+        unset($user['password']);
+
+        return [
+            'user' => $user,
+            'accessToken' => $accessToken
+        ];
     }
+}
 
 
 

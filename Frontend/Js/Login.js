@@ -1,5 +1,5 @@
 const form = document.getElementById('LoginForm');
-const mensagem = document.getElementById('mensagem');
+const mensage = document.getElementById('mensage');
 
 const token = localStorage.getItem("token"); 
 
@@ -8,14 +8,14 @@ if (form) {
         e.preventDefault();
 
         const email = document.getElementById('email').value.trim();
-        const senha = document.getElementById('senha').value.trim();
+        const password = document.getElementById('password').value.trim();
 
-        mensagem.textContent = '';
-        mensagem.style.color = 'red';
+        mensage.textContent = '';
+        mensage.style.color = 'red';
 
         // Validação básica no frontend
-        if (!email || !senha) {
-            mensagem.textContent = 'Por favor, preencha todos os campos.';
+        if (!email || !password) {
+            mensage.textContent = 'Por favor, preencha todos os campos.';
             return;
         }
 
@@ -25,7 +25,7 @@ if (form) {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ email, senha })
+                body: JSON.stringify({ email, password })
             });
 
             const data = await response.json();
@@ -42,17 +42,17 @@ if (form) {
                 console.log("Salvou:", localStorage.getItem("token"));
                 localStorage.setItem('user', JSON.stringify(data.user));
 
-                mensagem.style.color = 'green';
-                mensagem.textContent = 'Login realizado! Redirecionando...';
+                mensage.style.color = 'green';
+                mensage.textContent = 'Login realizado! Redirecionando...';
 
                 setTimeout(() => {
-                    window.location.href = 'index.html';   
+                    window.location.href = 'Index.html';   
                 }, 1200);
             } else {
-                mensagem.textContent = data.message || 'Email ou senha incorretos.';
+                mensage.textContent = data.message || 'Email ou senha incorretos.';
             }
         } catch (error) {
-            mensagem.textContent = 'Erro de conexão com o servidor. Verifique se o backend está rodando.';
+            mensage.textContent = 'Erro de conexão com o servidor. Verifique se o backend está rodando.';
             console.error('Erro:', error);
         }
     });

@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/jwt.php';
+require_once __DIR__ . '/Jwt.php';
 require_once __DIR__ . '/../../Config/Database.php';
 require_once __DIR__ . '/Response.php';
 

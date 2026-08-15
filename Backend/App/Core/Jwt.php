@@ -18,7 +18,7 @@ class JWTHandler
      $this->secret     = $_ENV['JWT_SECRET'] ?? 'change_this_secret';
      $this->algorithm  = $_ENV['JWT_ALGORITHM'] ?? 'HS256';
      $this->accessTtl  = (int)($_ENV['JWT_EXPIRATION'] ?? 3600);
-     $this->refreshTtl = (int)($_ENV['JWT_REFRESH_EXPIRATION'] ?? 86400);
+     $this->refreshTtl = (int)($_ENV['JWT_REFRESH_EXPIRATION'] ?? 604800);
 
       $this->pdo = $pdo;
     }
