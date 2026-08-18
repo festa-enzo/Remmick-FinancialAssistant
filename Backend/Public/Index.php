@@ -1,5 +1,6 @@
 <?php
 
+require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../Config/Database.php';
 require_once __DIR__ . '/../App/Core/Response.php';
 require_once __DIR__ . '/../App/Core/Auth.php';

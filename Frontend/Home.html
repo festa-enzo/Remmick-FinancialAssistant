@@ -1,0 +1,362 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Remmick Financial Assistant - Home</title>
+
+    <link rel="stylesheet" href="Style/Home.css">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- =========================
+             SIDEBAR
+        ========================== -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">R</span>
+                    <span class="logo-name">Remmick</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu">
+
+                <a href="#" class="menu-item active">
+                    <span class="menu-icon">⌂</span>
+                    <span>Home</span>
+                </a>
+
+                <a href="#" class="menu-item">
+                    <span class="menu-icon">▤</span>
+                    <span>Gastos</span>
+                </a>
+
+                <a href="#" class="menu-item">
+                    <span class="menu-icon">▥</span>
+                    <span>Receitas</span>
+                </a>
+
+                <a href="#" class="menu-item">
+                    <span class="menu-icon">◒</span>
+                    <span>Gráficos</span>
+                </a>
+
+                <a href="#" class="menu-item">
+                    <span class="menu-icon">♡</span>
+                    <span>Poupança</span>
+                </a>
+
+                <a href="#" class="menu-item">
+                    <span class="menu-icon">⚙</span>
+                    <span>Configurações</span>
+                </a>
+
+            </nav>
+
+        </aside>
+
+
+        <!-- =========================
+             CONTEÚDO PRINCIPAL
+        ========================== -->
+
+        <main class="main-content">
+
+            <!-- Cabeçalho -->
+
+            <header class="page-header">
+
+                <div class="breadcrumb">
+                    <span>Remmick</span>
+                    <span>/</span>
+                    <strong>Home</strong>
+                </div>
+
+                <div class="user-area">
+
+                    <div class="user-info">
+                        <span id="user-name">Usuário</span>
+                    </div>
+
+                    <div class="user-avatar">
+                        <img
+                            id="user-avatar"
+                            src="../assets/images/default-avatar.png"
+                            alt="Foto do usuário"
+                        >
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- =========================
+                 RESUMO FINANCEIRO
+            ========================== -->
+
+            <section class="financial-summary">
+
+                <!-- Saldo atual -->
+
+                <article class="summary-card balance-card">
+
+                    <div class="summary-card-header">
+                        <span class="summary-title">Saldo Atual</span>
+                        <span class="summary-icon">R$</span>
+                    </div>
+
+                    <div class="summary-value">
+                        <span id="current-balance">R$ 0,00</span>
+                    </div>
+
+                    <div class="summary-description">
+                        <span id="balance-description">
+                            Saldo disponível atualmente
+                        </span>
+                    </div>
+
+                </article>
+
+
+                <!-- Receita -->
+
+                <article class="summary-card income-card">
+
+                    <div class="summary-card-header">
+                        <span class="summary-title">Receita Atual</span>
+                        <span class="summary-icon">↑</span>
+                    </div>
+
+                    <div class="summary-value">
+                        <span id="current-income">R$ 0,00</span>
+                    </div>
+
+                    <div class="summary-description">
+                        <span id="income-description">
+                            Receita registrada no mês
+                        </span>
+                    </div>
+
+                </article>
+
+
+                <!-- Gastos -->
+
+                <article class="summary-card expense-card">
+
+                    <div class="summary-card-header">
+                        <span class="summary-title">Gastos do Mês</span>
+                        <span class="summary-icon">↓</span>
+                    </div>
+
+                    <div class="summary-value">
+                        <span id="current-expenses">R$ 0,00</span>
+                    </div>
+
+                    <div class="summary-description">
+                        <span id="expense-description">
+                            Total gasto no mês
+                        </span>
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- =========================
+                 CONTEÚDO DO DASHBOARD
+            ========================== -->
+
+            <section class="dashboard-content">
+
+
+                <!-- =========================
+                     ÚLTIMOS GASTOS
+                ========================== -->
+
+                <article class="card latest-expenses">
+
+                    <div class="card-header">
+
+                        <div>
+                            <h2>Últimos Gastos</h2>
+                            <p>Seus últimos lançamentos</p>
+                        </div>
+
+                        <a href="#" class="view-all">
+                            Ver todos
+                        </a>
+
+                    </div>
+
+
+                    <div class="expenses-list" id="latest-expenses-list">
+
+                        <!--
+                            O JavaScript irá inserir os últimos
+                            5 gastos retornados pela API.
+                        -->
+
+                        <div class="expense-item">
+
+                            <div class="expense-icon">
+                                -
+                            </div>
+
+                            <div class="expense-info">
+                                <span class="expense-title">
+                                    Nenhum gasto encontrado
+                                </span>
+
+                                <span class="expense-date">
+                                    --
+                                </span>
+                            </div>
+
+                            <div class="expense-value">
+                                R$ 0,00
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- =========================
+                     GRÁFICO FINANCEIRO
+                ========================== -->
+
+                <article class="card financial-chart">
+
+                    <div class="card-header">
+
+                        <div>
+                            <h2>Resumo Financeiro</h2>
+                            <p>Ganhos e gastos dos últimos meses</p>
+                        </div>
+
+                        <div class="chart-filter">
+
+                            <select id="chart-period">
+                                <option value="6">Últimos 6 meses</option>
+                                <option value="12">Últimos 12 meses</option>
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="chart-container">
+
+                        <!--
+                            O JavaScript poderá utilizar este elemento
+                            para criar o gráfico posteriormente.
+                        -->
+
+                        <canvas id="financial-chart"></canvas>
+
+                    </div>
+
+
+                    <div class="chart-legend">
+
+                        <div class="legend-item">
+                            <span class="legend-indicator income"></span>
+                            <span>Ganhos</span>
+                        </div>
+
+                        <div class="legend-item">
+                            <span class="legend-indicator expense"></span>
+                            <span>Gastos</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- =========================
+                 RESUMO MENSAL
+            ========================== -->
+
+            <section class="card monthly-summary">
+
+                <div class="card-header">
+
+                    <div>
+                        <h2>Resumo Mensal</h2>
+                        <p>Visão geral dos seus meses</p>
+                    </div>
+
+                    <select id="summary-year">
+                        <option value="">Ano atual</option>
+                    </select>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table class="monthly-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>Mês</th>
+                                <th>Ganhos</th>
+                                <th>Gastos</th>
+                                <th>Saldo</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="monthly-summary-body">
+
+                            <!--
+                                O JavaScript irá preencher esta tabela
+                                com os dados vindos da API.
+                            -->
+
+                            <tr>
+                                <td>Janeiro</td>
+                                <td>R$ 0,00</td>
+                                <td>R$ 0,00</td>
+                                <td>R$ 0,00</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- JavaScript da Home -->
+    <script src="../js/home.js"></script>
+
+</body>
+
+</html>
+```

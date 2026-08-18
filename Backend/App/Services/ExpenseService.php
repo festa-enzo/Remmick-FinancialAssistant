@@ -13,7 +13,7 @@ class ExpenseService
 
     public function createExpense(int $userId, array $data)
     { 
-        if (!isset($data['title'], $data['value'], $data['expense_month'], $data['expense_year'], $data['category_id'], $data['institution_id'], $data['method'])) {
+        if (!isset($data['title'], $data['value'], $data['expense_month_id'], $data['expense_year'], $data['category_id'], $data['institution_id'], $data['method_id'])) {
             throw new Exception('Dados obrigatórios não informados');
         }
 
@@ -25,7 +25,7 @@ class ExpenseService
             throw new Exception('O valor deve ser maior que R$0,00');
         }
 
-        if ($data['expense_month'] < 1 || $data['expense_month'] > 12) {
+        if ($data['expense_month_id'] < 1 || $data['expense_month_id'] > 12) {
             throw new Exception('O mês deve estar entre 1 e 12');
         }
 
@@ -41,7 +41,7 @@ class ExpenseService
             throw new Exception('Não é uma intituição válida');
         } // Nubank, Itaú, Bradesco, Banco do Brasil, Caixa, Santander, Inter, C6, BTG, XP, Mercado Pago, Pagbank, Neon, Picpay, Sicredi 
 
-        if ($data['method'] < 1 || $data['method'] > 4) {
+        if ($data['method_id'] < 1 || $data['method_id'] > 4) {
             throw new Exception('Não é um método válido');
         } // dinheiro, crédito, débito, boleto.
 

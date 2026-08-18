@@ -1,7 +1,7 @@
 <?php
 
-require_once __DIR__ . '/../Repositories/AuthRepository';
-require_once __DIR__ . '/../Core/Jwt';
+require_once __DIR__ . '/../Repositories/AuthRepository.php';
+require_once __DIR__ . '/../Core/Jwt.php';
 require_once __DIR__ . '/../../Config/Database.php';
 use PDO;
 

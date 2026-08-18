@@ -1,8 +1,8 @@
 <?php
 
-require_once __DIR__ . '/../../Services/AuthService.php';
-require_once __DIR__ . '/../../Core/Response.php';
-require_once __DIR__ . '/../../Core/Auth.php';
+require_once __DIR__ . '/../Services/AuthService.php';
+require_once __DIR__ . '/../Core/Response.php';
+require_once __DIR__ . '/../Core/Auth.php';
 
 class AuthController {
 

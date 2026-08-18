@@ -9,7 +9,7 @@ class Database {
 
     private function __construct() {
         $host     = 'localhost';
-        $dbname   = 'remmick';
+        $dbname   = 'remmick_finassist';
         $user     = 'root';
         $pass     = 'Uninove@10';   
 

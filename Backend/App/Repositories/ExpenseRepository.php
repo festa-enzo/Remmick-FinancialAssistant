@@ -8,17 +8,17 @@ class ExpenseRepository extends BaseRepository
 {    
     protected string $table = 'expenses';
 
-    protected array $sortableColumns = ['id', 'value', 'is_paid', 'expense_month', 'expense_year', 'created_at'];
+    protected array $sortableColumns = ['id', 'value', 'is_paid', 'expense_month_id', 'expense_year', 'created_at'];
 
-    public function findByMonth(int $user_id, int $expense_month, int $expense_year): ?array
+    public function findByMonth(int $user_id, int $expense_month_id, int $expense_year): ?array
     {
         $stmt = $this->db->prepare(
             "SELECT * FROM expenses WHERE user_id = :user_id 
-            AND expense_month = :expense_month
+            AND expense_month_id = :expense_month_id
             AND expense_year = :expense_year"
         );
         $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
-        $stmt->bindValue(':expense_month', $expense_month, PDO::PARAM_INT);
+        $stmt->bindValue(':expense_month_id', $expense_month_id, PDO::PARAM_INT);
         $stmt->bindValue(':expense_year', $expense_year, PDO::PARAM_INT);
         $stmt->execute();
         $row = $stmt->fetchAll();
@@ -31,19 +31,19 @@ class ExpenseRepository extends BaseRepository
     {
         $stmt = $this->db->prepare("
             INSERT INTO expenses
-            (user_id, expense_month, category_id, institution_id, expense_year, title, value, method)
+            (user_id, expense_month_id, category_id, institution_id, expense_year, title, value, method_id)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         ");
 
         $stmt->execute([
             $data['user_id'],
-            $data['expense_month'],
+            $data['expense_month_id'],
             $data['category_id'],
             $data['institution_id'],
             $data['expense_year'],
             $data['title'],
             $data['value'],
-            $data['method'],
+            $data['method_id'],
         ]);
 
         $id = (int) $this->db->lastInsertId();
@@ -54,12 +54,12 @@ class ExpenseRepository extends BaseRepository
     {
         $stmt = $this->db->prepare("
             DELETE FROM expenses
-            WHERE expense_id = :expense_id
+            WHERE id = :id
             AND user_id = :user_id
         ");
 
         $stmt->execute([
-            ':expense_id' => $expenseId,
+            ':id' => $expenseId,
             ':user_id' => $userId
         ]);
 
@@ -71,29 +71,29 @@ class ExpenseRepository extends BaseRepository
         $stmt = $this->db->prepare("
             UPDATE expenses
             SET
-                expense_month = :expense_month,
+                expense_month_id = :expense_month_id,
                 category_id = :category_id,
                 institution_id = :institution_id,
                 expense_year = :expense_year,
                 title = :title,
                 value = :value,
-                method = :method,
+                method_id = :method_id,
                 is_paid = :is_paid
             WHERE
                 user_id = :user_id
-                AND expense_id = :expense_id
+                AND id = :id
         ");
 
         $stmt->execute([
             ':expense_id' => $expenseId,
             ':user_id' => $userId,
-            ':expense_month' => $data['expense_month'],
+            ':expense_month_id' => $data['expense_month_id'],
             ':category_id' => $data['category_id'],
             ':institution_id' => $data['institution_id'],
             ':expense_year' => $data['expense_year'],
             ':title' => $data['title'],
             ':value' => $data['value'],
-            ':method' => $data['method'],
+            ':method_id' => $data['method_id'],
             ':is_paid' => $data['is_paid'] 
         ]);
 
@@ -121,19 +121,19 @@ class ExpenseRepository extends BaseRepository
 
 //===================== Agregações =========================
 
-    public function sumByMonth(int $user_id, int $expense_month, int $expense_year): array
+    public function sumByMonth(int $user_id, int $expense_month_id, int $expense_year): array
     {
         $stmt = $this->db->prepare("
             SELECT COALESCE(SUM(value), 0) AS total
             FROM expenses
             WHERE user_id = :user_id
-                AND expense_month = :expense_month
+                AND expense_month_id = :expense_month_id
                 AND expense_year = :expense_year
         ");
 
         $stmt->execute([
             ':user_id' => $user_id,
-            ':expense_month' => $expense_month,
+            ':expense_month_id' => $expense_month_id,
             ':expense_year' => $expense_year
         ]);
 

@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Remmick Financial Assistant - Gastos</title>
+
+<link rel="stylesheet" href="Style/Expenses.css">
+```
+
+</head>
+
+<body>
+
+```
+<div class="dashboard">
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-header">
+
+            <div class="logo">
+                <span class="logo-icon">R</span>
+                <span class="logo-name">Remmick</span>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-menu">
+
+            <a href="#" class="menu-item">
+                <span class="menu-icon">⌂</span>
+                <span>Home</span>
+            </a>
+
+            <a href="#" class="menu-item active">
+                <span class="menu-icon">▤</span>
+                <span>Gastos</span>
+            </a>
+
+            <a href="#" class="menu-item">
+                <span class="menu-icon">▥</span>
+                <span>Receitas</span>
+            </a>
+
+            <a href="#" class="menu-item">
+                <span class="menu-icon">◒</span>
+                <span>Gráficos</span>
+            </a>
+
+            <a href="#" class="menu-item">
+                <span class="menu-icon">♡</span>
+                <span>Poupança</span>
+            </a>
+
+            <a href="#" class="menu-item">
+                <span class="menu-icon">⚙</span>
+                <span>Configurações</span>
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- =========================
+         CONTEÚDO PRINCIPAL
+    ========================== -->
+
+    <main class="main-content">
+
+        <!-- =========================
+             HEADER
+        ========================== -->
+
+        <header class="page-header">
+
+            <div class="breadcrumb">
+                <span>Remmick</span>
+                <span>/</span>
+                <strong>Gastos</strong>
+            </div>
+
+            <div class="user-area">
+
+                <div class="user-info">
+                    <span id="user-name">Usuário</span>
+                </div>
+
+                <div class="user-avatar">
+
+                    <img
+                        id="user-avatar"
+                        src="../assets/images/default-avatar.png"
+                        alt="Foto do usuário"
+                    >
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =========================
+             TÍTULO DA PÁGINA
+        ========================== -->
+
+        <section class="page-title">
+
+            <div>
+                <h1>Gastos</h1>
+
+                <p>
+                    Gerencie seus gastos e acompanhe suas despesas.
+                </p>
+            </div>
+
+            <button type="button" class="primary-button" id="open-expense-form">
+                + Adicionar gasto
+            </button>
+
+        </section>
+
+
+        <!-- =========================
+             RESUMO
+        ========================== -->
+
+        <section class="financial-summary">
+
+            <article class="summary-card">
+
+                <div class="summary-card-header">
+
+                    <span class="summary-title">
+                        Gastos do mês
+                    </span>
+
+                    <span class="summary-icon">
+                        ↓
+                    </span>
+
+                </div>
+
+                <div class="summary-value">
+                    <span id="month-expenses">
+                        R$ 0,00
+                    </span>
+                </div>
+
+                <div class="summary-description">
+                    Total gasto no mês selecionado
+                </div>
+
+            </article>
+
+
+            <article class="summary-card">
+
+                <div class="summary-card-header">
+
+                    <span class="summary-title">
+                        Gastos pagos
+                    </span>
+
+                    <span class="summary-icon">
+                        ✓
+                    </span>
+
+                </div>
+
+                <div class="summary-value">
+                    <span id="paid-expenses">
+                        R$ 0,00
+                    </span>
+                </div>
+
+                <div class="summary-description">
+                    Total de gastos já pagos
+                </div>
+
+            </article>
+
+
+            <article class="summary-card">
+
+                <div class="summary-card-header">
+
+                    <span class="summary-title">
+                        Gastos pendentes
+                    </span>
+
+                    <span class="summary-icon">
+                        !
+                    </span>
+
+                </div>
+
+                <div class="summary-value">
+                    <span id="pending-expenses">
+                        R$ 0,00
+                    </span>
+                </div>
+
+                <div class="summary-description">
+                    Total ainda não pago
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- =========================
+             FORMULÁRIO
+        ========================== -->
+
+        <section class="card expense-form-card" id="expense-form-section">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>Novo gasto</h2>
+
+                    <p>
+                        Adicione uma nova despesa ao seu controle financeiro.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form id="expense-form">
+
+                <div class="form-grid">
+
+
+                    <!-- Título -->
+
+                    <div class="form-group form-group-large">
+
+                        <label for="expense-title">
+                            Nome do gasto
+                        </label>
+
+                        <input
+                            type="text"
+                            id="expense-title"
+                            name="title"
+                            placeholder="Ex.: Supermercado"
+                            autocomplete="off"
+                        >
+
+                        <span class="input-error" id="title-error"></span>
+
+                    </div>
+
+
+                    <!-- Valor -->
+
+                    <div class="form-group">
+
+                        <label for="expense-value">
+                            Valor
+                        </label>
+
+                        <input
+                            type="number"
+                            id="expense-value"
+                            name="value"
+                            placeholder="0,00"
+                            min="0"
+                            step="0.01"
+                        >
+
+                        <span class="input-error" id="value-error"></span>
+
+                    </div>
+
+
+                    <!-- Mês -->
+
+                    <div class="form-group">
+
+                        <label for="expense-month">
+                            Mês
+                        </label>
+
+                        <select
+                            id="expense-month"
+                            name="expense_month_id"
+                        >
+
+                            <option value="">
+                                Selecione
+                            </option>
+
+                            <option value="1">Janeiro</option>
+                            <option value="2">Fevereiro</option>
+                            <option value="3">Março</option>
+                            <option value="4">Abril</option>
+                            <option value="5">Maio</option>
+                            <option value="6">Junho</option>
+                            <option value="7">Julho</option>
+                            <option value="8">Agosto</option>
+                            <option value="9">Setembro</option>
+                            <option value="10">Outubro</option>
+                            <option value="11">Novembro</option>
+                            <option value="12">Dezembro</option>
+
+                        </select>
+
+                        <span class="input-error" id="month-error"></span>
+
+                    </div>
+
+
+                    <!-- Ano -->
+
+                    <div class="form-group">
+
+                        <label for="expense-year">
+                            Ano
+                        </label>
+
+                        <input
+                            type="number"
+                            id="expense-year"
+                            name="expense_year"
+                            min="2024"
+                            max="2035"
+                            placeholder="2026"
+                        >
+
+                        <span class="input-error" id="year-error"></span>
+
+                    </div>
+
+
+                    <!-- Categoria -->
+
+                    <div class="form-group">
+
+                        <label for="expense-category">
+                            Categoria
+                        </label>
+
+                        <select
+                            id="expense-category"
+                            name="category_id"
+                        >
+
+                            <option value="">
+                                Selecione
+                            </option>
+
+                            <option value="1">Alimentação</option>
+                            <option value="2">Transporte</option>
+                            <option value="3">Moradia</option>
+                            <option value="4">Compras</option>
+                            <option value="5">Lazer</option>
+                            <option value="6">Saúde</option>
+                            <option value="7">Educação</option>
+                            <option value="8">Tecnologia</option>
+                            <option value="9">Serviços</option>
+                            <option value="10">Vestuário</option>
+                            <option value="11">Presente</option>
+                            <option value="12">Outros</option>
+
+                        </select>
+
+                        <span class="input-error" id="category-error"></span>
+
+                    </div>
+
+
+                    <!-- Instituição -->
+
+                    <div class="form-group">
+
+                        <label for="expense-institution">
+                            Instituição
+                        </label>
+
+                        <select
+                            id="expense-institution"
+                            name="institution_id"
+                        >
+
+                            <option value="">
+                                Selecione
+                            </option>
+
+                            <option value="1">Nubank</option>
+                            <option value="2">Itaú</option>
+                            <option value="3">Bradesco</option>
+                            <option value="4">Banco do Brasil</option>
+                            <option value="5">Caixa</option>
+                            <option value="6">Santander</option>
+                            <option value="7">Inter</option>
+                            <option value="8">C6</option>
+                            <option value="9">BTG</option>
+                            <option value="10">XP</option>
+                            <option value="11">Mercado Pago</option>
+                            <option value="12">PagBank</option>
+                            <option value="13">Neon</option>
+                            <option value="14">PicPay</option>
+                            <option value="15">Sicredi</option>
+
+                        </select>
+
+                        <span class="input-error" id="institution-error"></span>
+
+                    </div>
+
+
+                    <!-- Método -->
+
+                    <div class="form-group">
+
+                        <label for="expense-method">
+                            Método de pagamento
+                        </label>
+
+                        <select
+                            id="expense-method"
+                            name="method_id"
+                        >
+
+                            <option value="">
+                                Selecione
+                            </option>
+
+                            <option value="1">Dinheiro</option>
+                            <option value="2">Crédito</option>
+                            <option value="3">Débito</option>
+                            <option value="4">Boleto</option>
+
+                        </select>
+
+                        <span class="input-error" id="method-error"></span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Mensagem geral -->
+
+                <div
+                    class="form-message"
+                    id="expense-form-message"
+                ></div>
+
+
+                <!-- Ações -->
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="cancel-expense"
+                    >
+                        Limpar
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                        id="submit-expense"
+                    >
+                        Adicionar gasto
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- =========================
+             LISTA DE GASTOS
+        ========================== -->
+
+        <section class="card expenses-table-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>Meus gastos</h2>
+
+                    <p>
+                        Consulte os gastos registrados.
+                    </p>
+
+                </div>
+
+
+                <div class="table-filters">
+
+                    <select id="filter-month">
+
+                        <option value="">
+                            Todos os meses
+                        </option>
+
+                        <option value="1">Janeiro</option>
+                        <option value="2">Fevereiro</option>
+                        <option value="3">Março</option>
+                        <option value="4">Abril</option>
+                        <option value="5">Maio</option>
+                        <option value="6">Junho</option>
+                        <option value="7">Julho</option>
+                        <option value="8">Agosto</option>
+                        <option value="9">Setembro</option>
+                        <option value="10">Outubro</option>
+                        <option value="11">Novembro</option>
+                        <option value="12">Dezembro</option>
+
+                    </select>
+
+
+                    <select id="filter-year">
+
+                        <option value="">
+                            Todos os anos
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table class="expenses-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Gasto</th>
+                            <th>Categoria</th>
+                            <th>Instituição</th>
+                            <th>Método</th>
+                            <th>Valor</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="expenses-table-body">
+
+                        <tr class="empty-row">
+
+                            <td colspan="7">
+
+                                <div class="empty-state">
+
+                                    <div class="empty-icon">
+                                        -
+                                    </div>
+
+                                    <strong>
+                                        Nenhum gasto encontrado
+                                    </strong>
+
+                                    <span>
+                                        Seus gastos aparecerão aqui.
+                                    </span>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="Js/Expenses.js"></script>
+
+</body>
+
+</html>
