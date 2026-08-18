@@ -25,6 +25,19 @@ class ExpenseRepository extends BaseRepository
         return $row ?: null;
     }
 
+    public function findByYear(int $user_id, int $expense_year): ?array
+    {
+        $stmt = $this->db->prepare(
+            "SELECT * FROM expenses WHERE user_id = :user_id 
+            AND expense_year = :expense_year"
+        );
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->bindValue(':expense_year', $expense_year, PDO::PARAM_INT);
+        $stmt->execute();
+        $row = $stmt->fetchAll();
+        return $row ?: null;
+    }
+
 //===================== CRUD =========================
 
     public function createExpense(array $data)

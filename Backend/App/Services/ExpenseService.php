@@ -11,6 +11,26 @@ class ExpenseService
         $this->expenseRepository = new ExpenseRepository();
     }
 
+    public function findByMonth(int $userId, array $data) 
+    {
+        $data['user_id'] = $userId;
+
+        if (!isset($data['expense_month_id'], $data['expense_year'])) {
+            throw new Exception('Dados obrigatórios não informados');
+        }
+        if ($data['expense_month_id'] < 1 || $data['expense_month_id'] > 12) {
+            throw new Exception('O mês deve estar entre 1 e 12');
+        }
+        if ($data['expense_year'] < 2024 || $data['expense_year'] > 2035) {
+            throw new Exception('O sistema suporta apenas entre 2024 a 2035');
+        }
+
+
+        return $this->expenseRepository->findByMonth($data);
+
+
+    }
+
     public function createExpense(int $userId, array $data)
     { 
         if (!isset($data['title'], $data['value'], $data['expense_month_id'], $data['expense_year'], $data['category_id'], $data['institution_id'], $data['method_id'])) {

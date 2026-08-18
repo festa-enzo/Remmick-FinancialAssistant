@@ -13,7 +13,7 @@ $routes = [
     ],
 
     'GET' => [
-        '/api/expense'    => ['ExpenseController', 'index'],
+        '/api/expense'    => ['ExpenseController', 'findByMonth'],
         '/api/columns'  => ['ColumnController', 'index'],
     ],
 

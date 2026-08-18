@@ -39,5 +39,31 @@ class ExpenseController {
             ], 400);
         }
 
-}
+    }
+    public function findByMonth() {
+        try {
+            $data = $_GET;
+        
+            $userId = Auth::requireAuth();
+            
+            $result = $this->expenseService->findByMonth($userId, $data);
+
+            Response::json([
+                'success' => true,
+                'data' => $result
+            ], 200);
+
+        } catch (JsonException $e) {
+            Response::json([
+                'success' => false,
+                'message' => 'JSON inválido'
+            ], 400);
+
+        } catch (Exception $e) {
+            Response::json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
 }
