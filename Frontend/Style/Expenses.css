@@ -762,49 +762,39 @@ AÇÕES DA TABELA
 
 .table-actions {
 display: flex;
-
-
 align-items: center;
-
 gap: 7px;
 
 
 }
 
 .action-button {
-width: 32px;
-height: 32px;
+    width: auto;
+    min-width: 60px;
+    height: 32px;
 
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
-display: flex;
+    padding: 0 10px;
 
-align-items: center;
-justify-content: center;
+    border: none;
+    border-radius: 8px;
 
-border: none;
+    background: #eef2ff;
+    color: #4f46e5;
 
-border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
 
-background: #eef2ff;
-
-color: #4f46e5;
-
-font-size: 13px;
-
-cursor: pointer;
-
-transition: all 0.2s ease;
-
-
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 .action-button:hover {
-background: #e0e7ff;
-
-
-transform: translateY(-1px);
-
-
+    background: #e0e7ff;
+    transform: translateY(-1px);
 }
 
 .action-button.delete {

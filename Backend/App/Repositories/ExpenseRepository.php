@@ -79,7 +79,7 @@ class ExpenseRepository extends BaseRepository
     return $stmt->rowCount() > 0;
     }
     
-    public function updateExpense(int $expenseId, int $userId, array $data): bool
+    public function updateExpense(array $data): bool
     {
         $stmt = $this->db->prepare("
             UPDATE expenses
@@ -98,8 +98,8 @@ class ExpenseRepository extends BaseRepository
         ");
 
         $stmt->execute([
-            ':expense_id' => $expenseId,
-            ':user_id' => $userId,
+            ':id' => $data['expense_id'],
+            ':user_id' => $data['user_id'],
             ':expense_month_id' => $data['expense_month_id'],
             ':category_id' => $data['category_id'],
             ':institution_id' => $data['institution_id'],

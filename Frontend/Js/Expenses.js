@@ -5,6 +5,9 @@ const expenseFilterMonth = document.getElementById("filter-month");
 const expenseFilterYear = document.getElementById("filter-year");
 const expenseTableBody = document.getElementById("expenses-table-body");
 const emptyRow = document.querySelector(".empty-row");
+const monthExpenses = document.getElementById("month-expenses");
+const paidExpenses = document.getElementById("paid-expenses");
+const pendingExpenses = document.getElementById("pending-expenses");
 
 
 
@@ -104,7 +107,11 @@ async function buscarGastos() {
         });
 
 
-        emptyRow.style.display = "none";         
+        emptyRow.style.display = "none";      
+        
+        let totalGastos = 0;
+        let totalPagos = 0;
+        let totalPendentes = 0;
 
         expenseData.forEach((expense) => {
             const row = document.createElement('tr');
@@ -113,8 +120,14 @@ async function buscarGastos() {
             const institutionCell = document.createElement('td');
             const methodCell = document.createElement('td');
             const valueCell = document.createElement('td');
-            const statusCell = document.createElement('td');            
+            const statusCell = document.createElement('td');   
+            const actionsCell = document.createElement('td');   
+            
+            const actionsContainer = document.createElement('div');
+            actionsContainer.classList.add('table-actions');
 
+            const editButton = document.createElement('button');
+            editButton.classList.add('action-button');
 
             const categoryName = converterNumero("categories", expense.category_id);
             const institutionName = converterNumero("institution", expense.institution_id);
@@ -127,6 +140,15 @@ async function buscarGastos() {
             methodCell.textContent = methodName;
             valueCell.textContent = "R$" + expense.value;
             statusCell.textContent = statusName;
+            editButton.textContent = 'Editar';
+
+            totalGastos += Number(expense.value);
+
+            if (expense.is_paid === 0) {
+                totalPendentes += Number(expense.value)
+            } else {
+                totalPagos += Number(expense.value)
+            }
 
 
             row.appendChild(titleCell);
@@ -135,12 +157,23 @@ async function buscarGastos() {
             row.appendChild(methodCell);
             row.appendChild(valueCell);
             row.appendChild(statusCell);
+            row.appendChild(actionsCell);
 
+            actionsCell.appendChild(actionsContainer);
+            actionsContainer.appendChild(editButton);
             expenseTableBody.appendChild(row);
 
         });
+
+        monthExpenses.textContent = "R$" + totalGastos;
+
+        paidExpenses.textContent = "R$" + totalPagos
+
+        pendingExpenses.textContent = "R$" + totalPendentes 
     }
 }
+
+
     document.addEventListener("DOMContentLoaded", buscarGastos);
 
     expenseFilterMonth.addEventListener("change", buscarGastos);

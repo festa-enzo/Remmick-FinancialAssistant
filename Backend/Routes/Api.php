@@ -19,7 +19,7 @@ $routes = [
     ],
 
     'PUT' => [
-        '/api/tasks/{id}'      => ['TaskController', 'update'],
+        '/api/expense/{id}'  => ['ExpenseController', 'updateExpense'],
     ],
 
     'DELETE' => [

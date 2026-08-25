@@ -40,6 +40,36 @@ class ExpenseController {
         }
 
     }
+
+    public function updateExpense(int $expenseId){
+    try {
+        $conteudoBruto = file_get_contents('php://input');
+        $data = json_decode($conteudoBruto, true, 512, JSON_THROW_ON_ERROR);
+
+        $userId = Auth::requireAuth();
+
+        $expense = $this->expenseService->updateExpense($expenseId, $userId, $data);
+
+        Response::json([
+            'success' => true,
+            'data' => $expense
+        ], 200);
+
+        } catch (JsonException $e) {
+            Response::json([
+                'success' => false,
+                'message' => 'JSON inválido'
+            ], 400);
+
+        } catch (Exception $e) {
+            Response::json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+
+    }
+
     public function findByMonth() {
         try {
             $data = $_GET;
