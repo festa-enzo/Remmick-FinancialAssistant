@@ -26,7 +26,7 @@ class ExpenseService
         }
 
 
-        return $this->expenseRepository->findByMonth($data);
+        return $this->expenseRepository->findByMonth($data['user_id'], $data['expense_month_id'], $data['expense_year']);
 
 
     }
