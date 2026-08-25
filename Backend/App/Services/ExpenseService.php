@@ -31,6 +31,22 @@ class ExpenseService
 
     }
 
+    public function findByYear(int $userId, array $data) 
+    {
+        $data['user_id'] = $userId;
+
+        if (!isset($data['expense_year'])) {
+            throw new Exception('Dados obrigatórios não informados');
+        }
+        if ($data['expense_year'] < 2024 || $data['expense_year'] > 2035) {
+            throw new Exception('O sistema suporta apenas entre 2024 a 2035');
+        }
+
+        return $this->expenseRepository->findByYear($data['user_id'], $data['expense_year']);
+
+
+    }
+
     public function createExpense(int $userId, array $data)
     { 
         if (!isset($data['title'], $data['value'], $data['expense_month_id'], $data['expense_year'], $data['category_id'], $data['institution_id'], $data['method_id'])) {

@@ -44,6 +44,11 @@
         7: "Vale_Refeicao",
         8: "Vale_Alimentacao",
     },
+
+    is_paid: {
+        0: "Não Pago",
+        1: "Pago"
+    }
 }
 export function converterNumero(tipo, id) {
 
