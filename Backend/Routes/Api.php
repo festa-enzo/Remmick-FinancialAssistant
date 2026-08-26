@@ -19,7 +19,9 @@ $routes = [
         '/api/income/month'    => ['IncomeController', 'findByMonth'],
         '/api/income/year'    => ['IncomeController', 'findByYear'],
         '/api/income/note'    => ['IncomeController', 'findNote'],
-
+        '/api/graphics/summary' => ['GraphicsController', 'findFinancialSummary'],
+        '/api/graphics/month-income' => ['GraphicsController', 'findMonthIncome'],
+        '/api/graphics/month-expense' => ['GraphicsController', 'findMonthExpense'],
     ],
 
     'PUT' => [

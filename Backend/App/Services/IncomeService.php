@@ -11,6 +11,26 @@ class IncomeService
         $this->incomeRepository = new IncomeRepository();
     }
 
+    public function findFinancialSummary(int $userId, array $data) 
+    {
+        $data['user_id'] = $userId;
+
+        if (!isset($data['income_month_id'], $data['income_year'])) {
+            throw new Exception('Dados obrigatórios não informados');
+        }
+        if ($data['income_month_id'] < 1 || $data['income_month_id'] > 12) {
+            throw new Exception('O mês deve estar entre 1 e 12');
+        }
+        if ($data['income_year'] < 2024 || $data['income_year'] > 2035) {
+            throw new Exception('O sistema suporta apenas entre 2024 a 2035');
+        }
+
+
+        return $this->incomeRepository->findByMonth($data['user_id'], $data['income_month_id'], $data['income_year']);
+
+
+    }
+
     public function findByMonth(int $userId, array $data) 
     {
         $data['user_id'] = $userId;

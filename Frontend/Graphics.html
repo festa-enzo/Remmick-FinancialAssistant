@@ -245,18 +245,19 @@
 
                 <select id="graphics-period">
 
-                    <option value="6">
-                        Últimos 6 meses
-                    </option>
-
-                    <option value="12">
-                        Últimos 12 meses
-                    </option>
-
-                    <option value="year">
-                        Este ano
-                    </option>
-
+                        <option value="2024">2024</option> 
+                        <option value="2025">2025</option> 
+                        <option value="2026" selected>2026</option> 
+                        <option value="2027">2027</option> 
+                        <option value="2028">2028</option> 
+                        <option value="2029">2029</option> 
+                        <option value="2030">2030</option> 
+                        <option value="2031">2031</option> 
+                        <option value="2032">2032</option> 
+                        <option value="2033">2033</option> 
+                        <option value="2034">2034</option> 
+                        <option value="2035">2035</option> 
+                    
                 </select>
 
             </div>
@@ -289,7 +290,7 @@
                 </div>
 
 
-                <div class="summary-value">
+                <div class="summary-value" id="month-incomes">
                     R$ 0,00
                 </div>
 
@@ -319,7 +320,7 @@
                 </div>
 
 
-                <div class="summary-value">
+                <div class="summary-value" id="month-expenses">
                     R$ 0,00
                 </div>
 
@@ -349,7 +350,7 @@
                 </div>
 
 
-                <div class="summary-value">
+                <div class="summary-value" id="month-balance">
                     R$ 0,00
                 </div>
 
@@ -473,17 +474,11 @@
 
                             <div class="bars">
 
-                                <div
-                                    class="bar income-bar"
-                                    style="height: 78%;"
-                                    title="Receitas: R$ 3.200"
-                                ></div>
+                                <div class="bar income-bar" data-month="1"></div>
 
-                                <div
-                                    class="bar expense-bar"
-                                    style="height: 54%;"
-                                    title="Gastos: R$ 2.200"
-                                ></div>
+
+                                <div class="bar expense-bar" data-month="1"></div>
+
 
                             </div>
 
@@ -504,17 +499,11 @@
 
                             <div class="bars">
 
-                                <div
-                                    class="bar income-bar"
-                                    style="height: 64%;"
-                                    title="Receitas: R$ 2.700"
-                                ></div>
+                                <div class="bar income-bar" data-month="2"></div>
 
-                                <div
-                                    class="bar expense-bar"
-                                    style="height: 42%;"
-                                    title="Gastos: R$ 1.700"
-                                ></div>
+
+                                <div class="bar expense-bar" data-month="2"></div>
+
 
                             </div>
 
@@ -535,17 +524,11 @@
 
                             <div class="bars">
 
-                                <div
-                                    class="bar income-bar"
-                                    style="height: 82%;"
-                                    title="Receitas: R$ 3.400"
-                                ></div>
+                                <div class="bar income-bar" data-month="3"></div>
 
-                                <div
-                                    class="bar expense-bar"
-                                    style="height: 50%;"
-                                    title="Gastos: R$ 2.000"
-                                ></div>
+
+                                <div class="bar expense-bar" data-month="3"></div>
+
 
                             </div>
 
@@ -566,17 +549,11 @@
 
                             <div class="bars">
 
-                                <div
-                                    class="bar income-bar"
-                                    style="height: 72%;"
-                                    title="Receitas: R$ 3.000"
-                                ></div>
+                                <div class="bar income-bar" data-month="4"></div>
 
-                                <div
-                                    class="bar expense-bar"
-                                    style="height: 45%;"
-                                    title="Gastos: R$ 1.800"
-                                ></div>
+
+                                <div class="bar expense-bar" data-month="4"></div>
+
 
                             </div>
 
@@ -597,17 +574,12 @@
 
                             <div class="bars">
 
-                                <div
-                                    class="bar income-bar"
-                                    style="height: 88%;"
-                                    title="Receitas: R$ 3.700"
-                                ></div>
+                                <div class="bar income-bar" data-month="5"></div>
 
-                                <div
-                                    class="bar expense-bar"
-                                    style="height: 58%;"
-                                    title="Gastos: R$ 2.400"
-                                ></div>
+
+
+                                <div class="bar expense-bar" data-month="5"></div>
+
 
                             </div>
 
@@ -628,17 +600,12 @@
 
                             <div class="bars">
 
-                                <div
-                                    class="bar income-bar"
-                                    style="height: 76%;"
-                                    title="Receitas: R$ 3.100"
-                                ></div>
+                                <div class="bar income-bar" data-month="6"></div>
 
-                                <div
-                                    class="bar expense-bar"
-                                    style="height: 49%;"
-                                    title="Gastos: R$ 2.000"
-                                ></div>
+
+
+                                <div class="bar expense-bar" data-month="6"></div>
+
 
                             </div>
 
@@ -657,17 +624,12 @@
 
                             <div class="bars">
 
-                                <div
-                                    class="bar income-bar"
-                                    style="height: 76%;"
-                                    title="Receitas: R$ 3.100"
-                                ></div>
+                                <div class="bar income-bar" data-month="7"></div>
 
-                                <div
-                                    class="bar expense-bar"
-                                    style="height: 49%;"
-                                    title="Gastos: R$ 2.000"
-                                ></div>
+
+
+                                <div class="bar expense-bar" data-month="7"></div>
+
 
                             </div>
 
@@ -686,17 +648,12 @@
 
                             <div class="bars">
 
-                                <div
-                                    class="bar income-bar"
-                                    style="height: 76%;"
-                                    title="Receitas: R$ 3.100"
-                                ></div>
+                                <div class="bar income-bar" data-month="8"></div>
 
-                                <div
-                                    class="bar expense-bar"
-                                    style="height: 49%;"
-                                    title="Gastos: R$ 2.000"
-                                ></div>
+
+
+                                <div class="bar expense-bar" data-month="8"></div>
+
 
                             </div>
 
@@ -715,17 +672,12 @@
 
                             <div class="bars">
 
-                                <div
-                                    class="bar income-bar"
-                                    style="height: 76%;"
-                                    title="Receitas: R$ 3.100"
-                                ></div>
+                                <div class="bar income-bar" data-month="9"></div>
 
-                                <div
-                                    class="bar expense-bar"
-                                    style="height: 49%;"
-                                    title="Gastos: R$ 2.000"
-                                ></div>
+
+
+                                <div class="bar expense-bar" data-month="9"></div>
+
 
                             </div>
 
@@ -744,17 +696,12 @@
 
                             <div class="bars">
 
-                                <div
-                                    class="bar income-bar"
-                                    style="height: 76%;"
-                                    title="Receitas: R$ 3.100"
-                                ></div>
+                                <div class="bar income-bar" data-month="10"></div>
 
-                                <div
-                                    class="bar expense-bar"
-                                    style="height: 49%;"
-                                    title="Gastos: R$ 2.000"
-                                ></div>
+
+
+                                <div class="bar expense-bar" data-month="10"></div>
+
 
                             </div>
 
@@ -773,17 +720,12 @@
 
                             <div class="bars">
 
-                                <div
-                                    class="bar income-bar"
-                                    style="height: 76%;"
-                                    title="Receitas: R$ 3.100"
-                                ></div>
+                                <div class="bar income-bar" data-month="11"></div>
 
-                                <div
-                                    class="bar expense-bar"
-                                    style="height: 49%;"
-                                    title="Gastos: R$ 2.000"
-                                ></div>
+
+
+                                <div class="bar expense-bar" data-month="11"></div>
+
 
                             </div>
 
@@ -802,17 +744,10 @@
 
                             <div class="bars">
 
-                                <div
-                                    class="bar income-bar"
-                                    style="height: 76%;"
-                                    title="Receitas: R$ 3.100"
-                                ></div>
+                                <div class="bar income-bar" data-month="12"></div>
 
-                                <div
-                                    class="bar expense-bar"
-                                    style="height: 49%;"
-                                    title="Gastos: R$ 2.000"
-                                ></div>
+
+                                <div class="bar expense-bar" data-month="12"></div>
 
                             </div>
 
@@ -1326,7 +1261,7 @@
 
 </div>
 
-
+<script type="module" src="Js/Graphics.js"></script>
 </body>
 
 </html>

@@ -40,4 +40,47 @@ class GraphicsRepository extends BaseRepository
         return $row ?: null;
     }
 
+    public function findMonthIncome(int $user_id, int $income_month_id, int $income_year): ?array
+    {
+        $stmt = $this->db->prepare(
+            "SELECT
+                income_month_id,
+                SUM(value) AS total
+            FROM incomes
+            WHERE user_id = :user_id
+            AND income_year = :income_year
+            AND income_month_id = :income_month_id
+            GROUP BY income_month_id
+            ORDER BY income_month_id"
+        );
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->bindValue(':income_year', $income_year, PDO::PARAM_INT);
+        $stmt->bindValue(':income_month_id', $income_month_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $row = $stmt->fetchAll();
+        return $row ?: null;
+    }
+
+    public function findMonthExpense(int $user_id, int $expense_month_id, int $expense_year): ?array
+    {
+        $stmt = $this->db->prepare(
+            "SELECT
+                expense_month_id,
+                SUM(value) AS total
+            FROM expenses
+            WHERE user_id = :user_id
+            AND expense_year = :expense_year
+            AND expense_month_id = :expense_month_id
+            GROUP BY expense_month_id
+            ORDER BY expense_month_id"
+        );
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->bindValue(':expense_year', $expense_year, PDO::PARAM_INT);
+        $stmt->bindValue(':expense_month_id', $expense_month_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $row = $stmt->fetchAll();
+        return $row ?: null;
+    }
+
+
 }

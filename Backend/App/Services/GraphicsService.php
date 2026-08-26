@@ -17,16 +17,60 @@ class GraphicsService
 
         $expense = $this->graphicsRepository->findTotalExpense($userId, $year);
 
-        // pegar o total de income
+        $totalIncome = $income['total'];
+        $totalExpense = $expense['total'];
+        $balance = $totalIncome - $totalExpense;
 
-        // pegar o total de expense
+        return [
+            'total_income' => $totalIncome,
+            'total_expense' => $totalExpense,
+            'balance' => $balance
+        ];
+    }
 
-        // calcular o saldo
+    public function findMonthIncome(int $userId, int $year): array
+    {
+        $monthIncome = [];
 
-    //    return [
-    //        'total_income' => ...,
-    //        'total_expense' => ...,
-    //        'balance' => ...
-    //    ];
+        for ($month = 1; $month <= 12; $month++) {
+
+            $result = $this->graphicsRepository->findMonthIncome(
+                $userId,
+                $month,
+                $year
+            );
+
+            if ($result !== null) {
+                $totalIncome = $result[0]['total'];
+            } else{
+                $totalIncome = 0;
+            }
+            $monthIncome[$month] = $totalIncome;
+        }
+
+        return $monthIncome;
+    }
+
+    public function findMonthExpense(int $userId, int $year): array
+    {
+        $monthExpense = [];
+
+        for ($month = 1; $month <= 12; $month++) {
+
+            $result = $this->graphicsRepository->findMonthExpense(
+                $userId,
+                $month,
+                $year
+            );
+
+            if ($result !== null) {
+                $totalExpense = $result[0]['total'];
+            } else{
+                $totalExpense = 0;
+            }
+            $monthExpense[$month] = $totalExpense;
+        }
+
+        return $monthExpense;
     }
 }   
