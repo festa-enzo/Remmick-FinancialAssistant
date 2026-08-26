@@ -48,7 +48,28 @@
     is_paid: {
         0: "Não Pago",
         1: "Pago"
-    }
+    },
+
+    is_received: {
+        0: "Pendente",
+        1: "Recebido"
+    },
+
+    income_origin: {
+        1: "Empresa",
+        2: "Cliente",
+        3: "Loja",
+        4: "Banco",
+        5: "Outros"
+    },
+
+    income_type: {
+        1: "Salário",
+        2: "Freelance",
+        3: "Vendas",
+        4: "Investimentos",
+        5: "Outros"
+    }    
 }
 export function converterNumero(tipo, id) {
 

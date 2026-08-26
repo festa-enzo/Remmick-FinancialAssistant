@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 
 <html lang="pt-BR">
@@ -5,8 +6,11 @@
 <head>
 
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Receitas - Remmick</title>
+
     <link rel="stylesheet" href="Style/Incomes.css">
 
 </head>
@@ -18,6 +22,7 @@
         <div class="logo">
 
             <div class="logo-icon">R</div>
+
             <span>Remmick</span>
 
         </div>
@@ -25,33 +30,51 @@
         <nav class="menu">
 
             <a href="Home.html" class="menu-item">
+
                 <span class="menu-icon">⌂</span>
+
                 <span>Home</span>
+
             </a>
 
             <a href="Expenses.html" class="menu-item">
+
                 <span class="menu-icon">▤</span>
+
                 <span>Gastos</span>
+
             </a>
 
             <a href="Incomes.html" class="menu-item active">
+
                 <span class="menu-icon">▥</span>
+
                 <span>Receitas</span>
+
             </a>
 
-            <a href="#" class="menu-item">
+            <a href="Graphics.html" class="menu-item">
+
                 <span class="menu-icon">◒</span>
+
                 <span>Gráficos</span>
+
             </a>
 
             <a href="#" class="menu-item">
+
                 <span class="menu-icon">♡</span>
+
                 <span>Poupança</span>
+
             </a>
 
             <a href="#" class="menu-item">
+
                 <span class="menu-icon">⚙</span>
+
                 <span>Configurações</span>
+
             </a>
 
         </nav>
@@ -61,22 +84,28 @@
 
     <main class="main-content">
 
-            <!-- =========================
+        <!-- =========================
              HEADER
         ========================== -->
 
         <header class="page-header">
 
             <div class="breadcrumb">
+
                 <span>Remmick</span>
+
                 <span>/</span>
-                <strong>Gastos</strong>
+
+                <strong>Receitas</strong>
+
             </div>
 
             <div class="user-area">
 
                 <div class="user-info">
+
                     <span id="user-name">Usuário</span>
+
                 </div>
 
                 <div class="user-avatar">
@@ -99,16 +128,14 @@
         <section class="page-title">
 
             <div>
+
                 <h1>Receitas</h1>
 
                 <p>
                     Gerencie suas receitas e acompanhe seus ganhos.
                 </p>
-            </div>
 
- <!--           <button type="button" class="primary-button" id="open-expense-form">
-                + Adicionar gasto
-            </button> -->
+            </div>
 
         </section>
 
@@ -129,7 +156,8 @@
 
                 </div>
 
-                <strong>R$ 0,00</strong>
+                <strong id="month-incomes">R$ 0,00</strong>
+
                 <p>Total de receitas registradas</p>
 
             </div>
@@ -147,7 +175,8 @@
 
                 </div>
 
-                <strong>R$ 0,00</strong>
+                <strong id="received-incomes">R$ 0,00</strong>
+
                 <p>Total de receitas já recebidas</p>
 
             </div>
@@ -165,7 +194,8 @@
 
                 </div>
 
-                <strong>R$ 0,00</strong>
+                <strong id="pending-incomes">R$ 0,00</strong>
+
                 <p>Total ainda não recebido</p>
 
             </div>
@@ -182,14 +212,17 @@
                 <div>
 
                     <h2>Nova receita</h2>
-                    <p>Adicione uma nova entrada ao seu controle financeiro.</p>
+
+                    <p>
+                        Adicione uma nova entrada ao seu controle financeiro.
+                    </p>
 
                 </div>
 
             </div>
 
 
-            <form class="income-form">
+            <form class="income-form" id="income-form">
 
                 <div class="form-group full-width">
 
@@ -200,6 +233,7 @@
                     <input
                         type="text"
                         id="income-name"
+                        name="title"
                         placeholder="Ex.: Salário"
                     >
 
@@ -215,6 +249,7 @@
                     <input
                         type="text"
                         id="income-value"
+                        name="value"
                         placeholder="0,00"
                     >
 
@@ -227,26 +262,27 @@
                         Mês
                     </label>
 
-                    <select id="income-month">
+                    <select
+                        id="income-month"
+                        name="income_month_id"
+                    >
 
                         <option value="">
                             Selecione
                         </option>
 
-                        <option>Janeiro</option>
-                        <option>Fevereiro</option>
-                        <option>Março</option>
-                        <option>Abril</option>
-                        <option>Maio</option>
-                        <option>Junho</option>
-                        <option>Julho</option>
-                        <option>Agosto</option>
-                        <option>Setembro</option>
-                        <option>Outubro</option>
-                        <option>Novembro</option>
-                        <option>Dezembro</option>
-
-                    </select>
+                        <option value="1">Janeiro</option>
+                        <option value="2">Fevereiro</option>
+                        <option value="3">Março</option>
+                        <option value="4">Abril</option>
+                        <option value="5">Maio</option>
+                        <option value="6">Junho</option>
+                        <option value="7">Julho</option>
+                        <option value="8">Agosto</option>
+                        <option value="9">Setembro</option>
+                        <option value="10">Outubro</option>
+                        <option value="11">Novembro</option>
+                        <option value="12">Dezembro</option>
 
                 </div>
 
@@ -260,6 +296,7 @@
                     <input
                         type="number"
                         id="income-year"
+                        name="income_year"
                         value="2026"
                     >
 
@@ -272,17 +309,20 @@
                         Tipo de receita
                     </label>
 
-                    <select id="income-type">
+                    <select
+                        id="income-type"
+                        name="income_type_id"
+                    >
 
                         <option value="">
                             Selecione
                         </option>
 
-                        <option>Salário</option>
-                        <option>Freelance</option>
-                        <option>Vendas</option>
-                        <option>Investimentos</option>
-                        <option>Outros</option>
+                        <option value="1">Salário</option>
+                        <option value="2">Freelance</option>
+                        <option value="3">Vendas</option>
+                        <option value="4">Investimentos</option>
+                        <option value="5">Outros</option>
 
                     </select>
 
@@ -295,17 +335,20 @@
                         Fonte da receita
                     </label>
 
-                    <select id="income-source">
+                    <select
+                        id="income-source"
+                        name="income_origin_id"
+                    >
 
                         <option value="">
                             Selecione
                         </option>
 
-                        <option>Empresa</option>
-                        <option>Cliente</option>
-                        <option>Loja</option>
-                        <option>Banco</option>
-                        <option>Outros</option>
+                        <option value="1">Empresa</option>
+                        <option value="2">Cliente</option>
+                        <option value="3">Loja</option>
+                        <option value="4">Banco</option>
+                        <option value="5">Outros</option>
 
                     </select>
 
@@ -318,14 +361,17 @@
                         Status
                     </label>
 
-                    <select id="income-status">
+                    <select
+                        id="income-status"
+                        name="is_received"
+                    >
 
                         <option value="">
                             Selecione
                         </option>
 
-                        <option>Recebida</option>
-                        <option>Pendente</option>
+                        <option value="1">Recebida</option>
+                        <option value="0">Pendente</option>
 
                     </select>
 
@@ -337,6 +383,7 @@
                     <button
                         type="reset"
                         class="btn-secondary"
+                        id="cancel-income"
                     >
                         Limpar
                     </button>
@@ -344,6 +391,7 @@
                     <button
                         type="submit"
                         class="btn-primary"
+                        id="submit-income"
                     >
                         Adicionar receita
                     </button>
@@ -369,11 +417,19 @@
                     <div>
 
                         <h2>Entradas</h2>
-                        <p>Suas receitas registradas no mês.</p>
+
+                        <p>
+                            Suas receitas registradas no mês.
+                        </p>
 
                     </div>
 
-                    <select class="month-filter">
+                    <div class="table-filters">
+
+                    <select
+                        class="month-filter"
+                        id="filter-month"
+                    >
 
                         <option value="1">Janeiro</option>
                         <option value="2">Fevereiro</option>
@@ -389,12 +445,32 @@
                         <option value="12">Dezembro</option>
 
                     </select>
-                    
 
+                    <select class="year-filter" id="filter-year"> 
+                        
+                        <option value="2024">2024</option> 
+                        <option value="2025">2025</option> 
+                        <option value="2026" selected>2026</option> 
+                        <option value="2027">2027</option> 
+                        <option value="2028">2028</option> 
+                        <option value="2029">2029</option> 
+                        <option value="2030">2030</option> 
+                        <option value="2031">2031</option> 
+                        <option value="2032">2032</option> 
+                        <option value="2033">2033</option> 
+                        <option value="2034">2034</option> 
+                        <option value="2035">2035</option> 
+                    
+                    </select>
                 </div>
 
+            </div>
 
-                <div class="entries-list">
+
+                <div
+                    class="entries-list"
+                    id="incomes-list"
+                >
 
                     <!-- As receitas serão adicionadas dinamicamente aqui -->
 
@@ -412,7 +488,10 @@
                     <div>
 
                         <h2>Notas</h2>
-                        <p>Observações sobre suas receitas.</p>
+
+                        <p>
+                            Observações sobre suas receitas.
+                        </p>
 
                     </div>
 
@@ -439,7 +518,13 @@
 
     </main>
 
+
+    <script
+        type="module"
+        src="Js/Income.js"
+    ></script>
+
 </body>
 
 </html>
-
+```

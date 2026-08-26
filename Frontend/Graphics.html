@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Remmick Financial Assistant - Gráficos</title>
+
+    <link
+        rel="stylesheet"
+        href="Style/Graphics.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="dashboard">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+
+        <div class="sidebar-header">
+
+            <div class="logo">
+
+                <span class="logo-icon">
+                    R
+                </span>
+
+                <span class="logo-name">
+                    Remmick
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-menu">
+
+
+            <a
+                href="Home.html"
+                class="menu-item"
+            >
+
+                <span class="menu-icon">
+                    ⌂
+                </span>
+
+                <span>
+                    Home
+                </span>
+
+            </a>
+
+
+            <a
+                href="Expenses.html"
+                class="menu-item"
+            >
+
+                <span class="menu-icon">
+                    ▤
+                </span>
+
+                <span>
+                    Gastos
+                </span>
+
+            </a>
+
+
+            <a
+                href="Incomes.html"
+                class="menu-item"
+            >
+
+                <span class="menu-icon">
+                    ▥
+                </span>
+
+                <span>
+                    Receitas
+                </span>
+
+            </a>
+
+
+            <a
+                href="Graphics.html"
+                class="menu-item active"
+            >
+
+                <span class="menu-icon">
+                    ◒
+                </span>
+
+                <span>
+                    Gráficos
+                </span>
+
+            </a>
+
+
+            <a
+                href="#"
+                class="menu-item"
+            >
+
+                <span class="menu-icon">
+                    ♡
+                </span>
+
+                <span>
+                    Poupança
+                </span>
+
+            </a>
+
+
+            <a
+                href="#"
+                class="menu-item"
+            >
+
+                <span class="menu-icon">
+                    ⚙
+                </span>
+
+                <span>
+                    Configurações
+                </span>
+
+            </a>
+
+
+        </nav>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         CONTEÚDO PRINCIPAL
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             HEADER
+        ================================================== -->
+
+        <header class="page-header">
+
+
+            <div class="breadcrumb">
+
+                <span>
+                    Remmick
+                </span>
+
+                <span>
+                    /
+                </span>
+
+                <strong>
+                    Gráficos
+                </strong>
+
+            </div>
+
+
+            <div class="user-area">
+
+
+                <div class="user-info">
+
+                    <span id="user-name">
+                        Usuário
+                    </span>
+
+                </div>
+
+
+                <div class="user-avatar">
+
+                    <img
+                        id="user-avatar"
+                        src="../assets/images/default-avatar.png"
+                        alt="Foto do usuário"
+                    >
+
+                </div>
+
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- =================================================
+             TÍTULO
+        ================================================== -->
+
+        <section class="page-title">
+
+
+            <div>
+
+                <h1>
+                    Gráficos
+                </h1>
+
+                <p>
+                    Visualize sua vida financeira e acompanhe seus resultados.
+                </p>
+
+            </div>
+
+
+            <div class="period-filter">
+
+                <label for="graphics-period">
+                    Período
+                </label>
+
+                <select id="graphics-period">
+
+                    <option value="6">
+                        Últimos 6 meses
+                    </option>
+
+                    <option value="12">
+                        Últimos 12 meses
+                    </option>
+
+                    <option value="year">
+                        Este ano
+                    </option>
+
+                </select>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             RESUMO
+        ================================================== -->
+
+        <section class="financial-summary">
+
+
+            <article class="summary-card">
+
+
+                <div class="summary-card-header">
+
+                    <span class="summary-title">
+                        Total de receitas
+                    </span>
+
+                    <span class="summary-icon">
+                        ↑
+                    </span>
+
+                </div>
+
+
+                <div class="summary-value">
+                    R$ 0,00
+                </div>
+
+
+                <div class="summary-description">
+                    Total recebido no período
+                </div>
+
+
+            </article>
+
+
+
+            <article class="summary-card">
+
+
+                <div class="summary-card-header">
+
+                    <span class="summary-title">
+                        Total de gastos
+                    </span>
+
+                    <span class="summary-icon">
+                        ↓
+                    </span>
+
+                </div>
+
+
+                <div class="summary-value">
+                    R$ 0,00
+                </div>
+
+
+                <div class="summary-description">
+                    Total gasto no período
+                </div>
+
+
+            </article>
+
+
+
+            <article class="summary-card">
+
+
+                <div class="summary-card-header">
+
+                    <span class="summary-title">
+                        Saldo do período
+                    </span>
+
+                    <span class="summary-icon">
+                        R$
+                    </span>
+
+                </div>
+
+
+                <div class="summary-value">
+                    R$ 0,00
+                </div>
+
+
+                <div class="summary-description">
+                    Receitas menos gastos
+                </div>
+
+
+            </article>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             GRÁFICO PRINCIPAL
+        ================================================== -->
+
+        <section class="card main-chart-card">
+
+
+            <div class="card-header">
+
+
+                <div>
+
+                    <h2>
+                        Receitas x Gastos
+                    </h2>
+
+                    <p>
+                        Compare suas receitas e despesas ao longo dos meses.
+                    </p>
+
+                </div>
+
+
+                <div class="chart-legend">
+
+
+                    <span class="legend-item">
+
+                        <span class="legend-dot income">
+                        </span>
+
+                        Receitas
+
+                    </span>
+
+
+                    <span class="legend-item">
+
+                        <span class="legend-dot expense">
+                        </span>
+
+                        Gastos
+
+                    </span>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="bar-chart">
+
+
+                <!-- EIXO -->
+
+                <div class="chart-y-axis">
+
+                    <span>
+                        R$ 4.000
+                    </span>
+
+                    <span>
+                        R$ 3.000
+                    </span>
+
+                    <span>
+                        R$ 2.000
+                    </span>
+
+                    <span>
+                        R$ 1.000
+                    </span>
+
+                    <span>
+                        R$ 0
+                    </span>
+
+                </div>
+
+
+                <div class="chart-area">
+
+
+                    <div class="chart-grid">
+
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+
+                    </div>
+
+
+                    <div class="bars-container">
+
+
+                        <!-- Janeiro -->
+
+                        <div class="month-group">
+
+
+                            <div class="bars">
+
+                                <div
+                                    class="bar income-bar"
+                                    style="height: 78%;"
+                                    title="Receitas: R$ 3.200"
+                                ></div>
+
+                                <div
+                                    class="bar expense-bar"
+                                    style="height: 54%;"
+                                    title="Gastos: R$ 2.200"
+                                ></div>
+
+                            </div>
+
+
+                            <span class="month-label">
+                                Jan
+                            </span>
+
+
+                        </div>
+
+
+
+                        <!-- Fevereiro -->
+
+                        <div class="month-group">
+
+
+                            <div class="bars">
+
+                                <div
+                                    class="bar income-bar"
+                                    style="height: 64%;"
+                                    title="Receitas: R$ 2.700"
+                                ></div>
+
+                                <div
+                                    class="bar expense-bar"
+                                    style="height: 42%;"
+                                    title="Gastos: R$ 1.700"
+                                ></div>
+
+                            </div>
+
+
+                            <span class="month-label">
+                                Fev
+                            </span>
+
+
+                        </div>
+
+
+
+                        <!-- Março -->
+
+                        <div class="month-group">
+
+
+                            <div class="bars">
+
+                                <div
+                                    class="bar income-bar"
+                                    style="height: 82%;"
+                                    title="Receitas: R$ 3.400"
+                                ></div>
+
+                                <div
+                                    class="bar expense-bar"
+                                    style="height: 50%;"
+                                    title="Gastos: R$ 2.000"
+                                ></div>
+
+                            </div>
+
+
+                            <span class="month-label">
+                                Mar
+                            </span>
+
+
+                        </div>
+
+
+
+                        <!-- Abril -->
+
+                        <div class="month-group">
+
+
+                            <div class="bars">
+
+                                <div
+                                    class="bar income-bar"
+                                    style="height: 72%;"
+                                    title="Receitas: R$ 3.000"
+                                ></div>
+
+                                <div
+                                    class="bar expense-bar"
+                                    style="height: 45%;"
+                                    title="Gastos: R$ 1.800"
+                                ></div>
+
+                            </div>
+
+
+                            <span class="month-label">
+                                Abr
+                            </span>
+
+
+                        </div>
+
+
+
+                        <!-- Maio -->
+
+                        <div class="month-group">
+
+
+                            <div class="bars">
+
+                                <div
+                                    class="bar income-bar"
+                                    style="height: 88%;"
+                                    title="Receitas: R$ 3.700"
+                                ></div>
+
+                                <div
+                                    class="bar expense-bar"
+                                    style="height: 58%;"
+                                    title="Gastos: R$ 2.400"
+                                ></div>
+
+                            </div>
+
+
+                            <span class="month-label">
+                                Mai
+                            </span>
+
+
+                        </div>
+
+
+
+                        <!-- Junho -->
+
+                        <div class="month-group">
+
+
+                            <div class="bars">
+
+                                <div
+                                    class="bar income-bar"
+                                    style="height: 76%;"
+                                    title="Receitas: R$ 3.100"
+                                ></div>
+
+                                <div
+                                    class="bar expense-bar"
+                                    style="height: 49%;"
+                                    title="Gastos: R$ 2.000"
+                                ></div>
+
+                            </div>
+
+
+                            <span class="month-label">
+                                Jun
+                            </span>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             SEGUNDA LINHA DE GRÁFICOS
+        ================================================== -->
+
+        <section class="charts-grid">
+
+
+            <!-- =============================================
+                 GASTOS POR CATEGORIA
+            ============================================== -->
+
+            <article class="card chart-card">
+
+
+                <div class="card-header">
+
+
+                    <div>
+
+                        <h2>
+                            Gastos por categoria
+                        </h2>
+
+                        <p>
+                            Veja onde seu dinheiro está sendo utilizado.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="horizontal-chart">
+
+
+                    <div class="category-row">
+
+                        <div class="category-info">
+
+                            <span>
+                                Alimentação
+                            </span>
+
+                            <strong>
+                                R$ 0,00
+                            </strong>
+
+                        </div>
+
+                        <div class="category-bar">
+
+                            <span
+                                style="width: 0%;"
+                            ></span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="category-row">
+
+                        <div class="category-info">
+
+                            <span>
+                                Transporte
+                            </span>
+
+                            <strong>
+                                R$ 0,00
+                            </strong>
+
+                        </div>
+
+                        <div class="category-bar">
+
+                            <span
+                                style="width: 0%;"
+                            ></span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="category-row">
+
+                        <div class="category-info">
+
+                            <span>
+                                Moradia
+                            </span>
+
+                            <strong>
+                                R$ 0,00
+                            </strong>
+
+                        </div>
+
+                        <div class="category-bar">
+
+                            <span
+                                style="width: 0%;"
+                            ></span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="category-row">
+
+                        <div class="category-info">
+
+                            <span>
+                                Lazer
+                            </span>
+
+                            <strong>
+                                R$ 0,00
+                            </strong>
+
+                        </div>
+
+                        <div class="category-bar">
+
+                            <span
+                                style="width: 0%;"
+                            ></span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="category-row">
+
+                        <div class="category-info">
+
+                            <span>
+                                Compras
+                            </span>
+
+                            <strong>
+                                R$ 0,00
+                            </strong>
+
+                        </div>
+
+                        <div class="category-bar">
+
+                            <span
+                                style="width: 0%;"
+                            ></span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="category-row">
+
+                        <div class="category-info">
+
+                            <span>
+                                Outros
+                            </span>
+
+                            <strong>
+                                R$ 0,00
+                            </strong>
+
+                        </div>
+
+                        <div class="category-bar">
+
+                            <span
+                                style="width: 0%;"
+                            ></span>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </article>
+
+
+
+            <!-- =============================================
+                 DISTRIBUIÇÃO
+            ============================================== -->
+
+            <article class="card chart-card">
+
+
+                <div class="card-header">
+
+
+                    <div>
+
+                        <h2>
+                            Distribuição dos gastos
+                        </h2>
+
+                        <p>
+                            Participação de cada categoria nos seus gastos.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="distribution-content">
+
+
+                    <div class="donut-chart">
+
+                        <div class="donut-center">
+
+                            <strong>
+                                R$ 0
+                            </strong>
+
+                            <span>
+                                Total
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="distribution-legend">
+
+
+                        <div class="distribution-item">
+
+                            <span class="distribution-color color-1">
+                            </span>
+
+                            <span>
+                                Alimentação
+                            </span>
+
+                            <strong>
+                                0%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="distribution-item">
+
+                            <span class="distribution-color color-2">
+                            </span>
+
+                            <span>
+                                Transporte
+                            </span>
+
+                            <strong>
+                                0%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="distribution-item">
+
+                            <span class="distribution-color color-3">
+                            </span>
+
+                            <span>
+                                Moradia
+                            </span>
+
+                            <strong>
+                                0%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="distribution-item">
+
+                            <span class="distribution-color color-4">
+                            </span>
+
+                            <span>
+                                Lazer
+                            </span>
+
+                            <strong>
+                                0%
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </article>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             TERCEIRA LINHA
+        ================================================== -->
+
+        <section class="bottom-grid">
+
+
+            <!-- =============================================
+                 SEUS GASTOS
+            ============================================== -->
+
+            <article class="card financial-list-card">
+
+
+                <div class="card-header">
+
+
+                    <div>
+
+                        <h2>
+                            Seus gastos
+                        </h2>
+
+                        <p>
+                            Principais despesas do período.
+                        </p>
+
+                    </div>
+
+
+                    <a
+                        href="Expenses.html"
+                        class="view-link"
+                    >
+                        Ver todos
+                    </a>
+
+
+                </div>
+
+
+
+                <div class="financial-list">
+
+
+                    <div class="financial-item">
+
+
+                        <div class="financial-icon">
+                            -
+                        </div>
+
+
+                        <div class="financial-info">
+
+                            <strong>
+                                Nenhum gasto encontrado
+                            </strong>
+
+                            <span>
+                                Seus gastos aparecerão aqui.
+                            </span>
+
+                        </div>
+
+
+                        <strong class="financial-value">
+                            R$ 0,00
+                        </strong>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </article>
+
+
+
+            <!-- =============================================
+                 SUAS RECEITAS
+            ============================================== -->
+
+            <article class="card financial-list-card">
+
+
+                <div class="card-header">
+
+
+                    <div>
+
+                        <h2>
+                            Suas receitas
+                        </h2>
+
+                        <p>
+                            Principais entradas do período.
+                        </p>
+
+                    </div>
+
+
+                    <a
+                        href="Incomes.html"
+                        class="view-link"
+                    >
+                        Ver todas
+                    </a>
+
+
+                </div>
+
+
+
+                <div class="financial-list">
+
+
+                    <div class="financial-item">
+
+
+                        <div class="financial-icon income-icon">
+                            +
+                        </div>
+
+
+                        <div class="financial-info">
+
+                            <strong>
+                                Nenhuma receita encontrada
+                            </strong>
+
+                            <span>
+                                Suas receitas aparecerão aqui.
+                            </span>
+
+                        </div>
+
+
+                        <strong class="financial-value income-value">
+                            R$ 0,00
+                        </strong>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </article>
+
+
+        </section>
+
+
+    </main>
+
+
+</div>
+
+
+</body>
+
+</html>
