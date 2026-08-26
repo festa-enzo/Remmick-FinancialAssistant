@@ -9,6 +9,7 @@ $routes = [
         '/api/login'    => ['AuthController', 'login'],
         '/api/expense'           => ['ExpenseController', 'createExpense'],
         '/api/income'           => ['IncomeController', 'createIncome'],
+        '/api/income/note'           => ['IncomeController', 'createNote'],
         // '/api/logout'   => ['AuthController', 'logout'],
     ],
 
@@ -17,11 +18,14 @@ $routes = [
         '/api/expense/year'    => ['ExpenseController', 'findByYear'],
         '/api/income/month'    => ['IncomeController', 'findByMonth'],
         '/api/income/year'    => ['IncomeController', 'findByYear'],
+        '/api/income/note'    => ['IncomeController', 'findNote'],
+
     ],
 
     'PUT' => [
         '/api/expense/{id}'  => ['ExpenseController', 'updateExpense'],
         '/api/income/{id}'  => ['IncomeController', 'updateIncome'],
+        '/api/income/note/{id}'  => ['IncomeController', 'updateNote'],
     ],
 
     'DELETE' => [

@@ -6,6 +6,9 @@ const incomeList = document.getElementById('incomes-list');
 const monthIncomes = document.getElementById('month-incomes');
 const receivedIncomes = document.getElementById('received-incomes');
 const pendingIncomes = document.getElementById('pending-incomes');
+const notes = document.querySelector('.notes');
+const saveNoteButton = document.getElementById('save-note');
+let noteId = null;
 let editingIncomeId = null;
 
 if (incomeForm) {
@@ -322,10 +325,102 @@ async function buscarReceitas() {
     }
 
 }
+async function buscarNota() {
+
+    const response = await fetch(
+        'http://api.remmick.com/api/income/note',
+        {
+            method: 'GET',
+            headers: {
+                'Authorization':
+                    'Bearer ' + localStorage.getItem('token')
+            }
+        }
+    );
+
+    const responseData = await response.json();
+
+    if (!response.ok) {
+        alert(responseData.message);
+        return;
+    }
+
+    if (responseData.success) {
+
+        if (responseData.data === null) {
+
+            noteId = null;
+            notes.value = '';
+
+        } else {
+
+            noteId = responseData.data.id;
+            notes.value = responseData.data.content;
+
+        }
+    }
+}
+saveNoteButton.addEventListener('click', async () => {
+
+    const objectNote = {
+        content: notes.value
+    };
+
+    const method = noteId === null ? 'POST' : 'PUT';
+
+    let url;
+
+    if (noteId === null) {
+        url = 'http://api.remmick.com/api/income/note';
+    } else {
+        url = `http://api.remmick.com/api/income/note/${noteId}`;
+    }
+
+    try {
+
+        const response = await fetch(url, {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization':
+                    'Bearer ' + localStorage.getItem('token')
+            },
+            body: JSON.stringify(objectNote)
+        });
+
+        const responseData = await response.json();
+
+        if (!response.ok) {
+            alert(responseData.message);
+            return;
+        }
+
+        if (responseData.success) {
+
+            const mensagem = noteId === null
+                ? 'Nota criada com sucesso!'
+                : 'Nota alterada com sucesso!';
+
+            if (noteId === null) {
+                noteId = responseData.data;
+            }
+
+            alert(mensagem);
+        }
+    } catch (error) {
+
+        alert('Erro de conexão com o servidor');
+
+    }
+
+});
 
 document.addEventListener(
     "DOMContentLoaded",
-    buscarReceitas
+    () => {
+        buscarReceitas();
+        buscarNota();
+    }
 );
 
 incomeFilterMonth.addEventListener(

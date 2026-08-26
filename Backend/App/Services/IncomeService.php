@@ -135,4 +135,36 @@ class IncomeService
 
 
     }
+//===================== Notas =========================
+
+    public function createNote(int $userId, array $data)
+    {
+        if (!isset($data['content'])) {
+            throw new Exception('A nota está vazia');
+        }
+
+        $data['user_id'] = $userId;
+
+        return $this->incomeRepository->createNote($data);
+    }
+
+    public function updateNote(int $noteId, int $userId, array $data): bool
+    {
+        if (!isset($data['content'])) {
+            throw new Exception('A nota está vazia');
+        }
+
+        $data['user_id'] = $userId;
+        $data['note_id'] = $noteId;
+
+        return $this->incomeRepository->updateNote($data);
+    }
+
+    public function findNote(int $userId) 
+    {
+        $data['user_id'] = $userId;
+
+        return $this->incomeRepository->findNote($data['user_id']);
+    }
+
 }

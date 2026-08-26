@@ -148,4 +148,86 @@ class IncomeController {
             ], 400);
         }
     }
+
+        public function createNote(){
+        try {
+            $conteudoBruto = file_get_contents('php://input');
+            $data = json_decode($conteudoBruto, true, 512, JSON_THROW_ON_ERROR);
+        
+            $userId = Auth::requireAuth();
+            
+            $income = $this->incomeService->createNote($userId, $data);
+
+            Response::json([
+                'success' => true,
+                'data' => $income
+            ], 201);
+
+        } catch (JsonException $e) {
+            Response::json([
+                'success' => false,
+                'message' => 'JSON inválido'
+            ], 400);
+
+        } catch (Exception $e) {
+            Response::json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+
+    }
+
+    public function updateNote(int $noteId){
+    try {
+        $conteudoBruto = file_get_contents('php://input');
+        $data = json_decode($conteudoBruto, true, 512, JSON_THROW_ON_ERROR);
+
+        $userId = Auth::requireAuth();
+
+        $income = $this->incomeService->updateNote($noteId, $userId, $data);
+
+        Response::json([
+            'success' => true,
+            'data' => $income
+        ], 200);
+
+        } catch (JsonException $e) {
+            Response::json([
+                'success' => false,
+                'message' => 'JSON inválido'
+            ], 400);
+
+        } catch (Exception $e) {
+            Response::json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+
+    }
+    public function findNote() {
+        try {        
+            $userId = Auth::requireAuth();
+            
+            $result = $this->incomeService->findNote($userId);
+
+            Response::json([
+                'success' => true,
+                'data' => $result
+            ], 200);
+
+        } catch (JsonException $e) {
+            Response::json([
+                'success' => false,
+                'message' => 'JSON inválido'
+            ], 400);
+
+        } catch (Exception $e) {
+            Response::json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
 }

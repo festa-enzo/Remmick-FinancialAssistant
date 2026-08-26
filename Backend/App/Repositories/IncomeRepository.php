@@ -152,8 +152,59 @@ class IncomeRepository extends BaseRepository
 
     }
 
+//===================== Notas =========================
+
+    public function createNote(array $data)
+    {
+        $stmt = $this->db->prepare("
+            INSERT INTO notes
+            (user_id, content)
+            VALUES (?, ?)
+        ");
+
+        $stmt->execute([
+            $data['user_id'],
+            $data['content'],
+        ]);
+
+        return (int) $this->db->lastInsertId();
+    }
 
 
+    public function updateNote(array $data): bool
+    {
+        $stmt = $this->db->prepare("
+            UPDATE notes
+            SET
+                content = :content
+            WHERE
+                user_id = :user_id
+                AND id = :id
+        ");
+
+        $stmt->execute([
+            ':id' => $data['note_id'],
+            ':user_id' => $data['user_id'],
+            ':content' => $data['content'],
+        ]);
+
+        return $stmt->rowCount() > 0;
+    }
+
+    public function findNote(int $user_id): ?array 
+    {
+        $stmt = $this->db->prepare("
+            SELECT *
+            FROM notes
+            WHERE user_id = :user_id        
+        ");
+        
+        $stmt->execute([
+        ':user_id' => $user_id
+        ]);
+
+        return $stmt->fetch() ?: null;
+    }
 
 
 }
