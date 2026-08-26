@@ -20,7 +20,11 @@ a {
     color: inherit;
 }
 
-
+button,
+input,
+select {
+font-family: inherit;
+}
 /* =========================================================
    DASHBOARD
 ========================================================= */
@@ -371,6 +375,9 @@ font-size: 13px;
     box-shadow: 0 10px 25px rgba(79, 70, 229, 0.05);
 
     padding: 24px;
+
+    margin-bottom: 25px;
+
 }
 
 .card-header {
@@ -713,6 +720,11 @@ font-size: 13px;
 
         padding: 25px 20px;
     }
+.page-title {
+    align-items: flex-start;
+
+    gap: 20px;
+}
 
 }
 
@@ -738,6 +750,15 @@ font-size: 13px;
     .user-info {
         display: none;
     }
+
+    .page-title {
+    flex-direction: column;
+}
+
+.page-title .primary-button {
+    width: 100%;
+}
+
 
     .summary-value {
         font-size: 22px;
