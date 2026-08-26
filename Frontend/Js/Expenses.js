@@ -8,7 +8,8 @@ const emptyRow = document.querySelector(".empty-row");
 const monthExpenses = document.getElementById("month-expenses");
 const paidExpenses = document.getElementById("paid-expenses");
 const pendingExpenses = document.getElementById("pending-expenses");
-
+let editingExpenseId = null;
+let deletingExpenseId = null;
 
 
 if (expenseForm) {
@@ -16,12 +17,19 @@ if (expenseForm) {
     e.preventDefault()
         
     const formData = new FormData(expenseForm);
-
     const objectForm = Object.fromEntries(formData);
+    const method = editingExpenseId === null ? 'POST' : 'PUT';
+    let url;
+
+    if (editingExpenseId === null) {
+        url = 'http://api.remmick.com/api/expense';
+    } else {
+        url = `http://api.remmick.com/api/expense/${editingExpenseId}`;
+    }
       
     try {
-    const response = await fetch('http://api.remmick.com/api/expense', {
-        method: 'POST',
+    const response = await fetch(url, {
+        method: method,
         headers: {
             'Content-Type': 'application/json',
             'Authorization': "Bearer " + localStorage.getItem('token')
@@ -129,6 +137,9 @@ async function buscarGastos() {
             const editButton = document.createElement('button');
             editButton.classList.add('action-button');
 
+            const deleteButton = document.createElement('button');
+            deleteButton.classList.add('action-button', 'delete');
+
             const categoryName = converterNumero("categories", expense.category_id);
             const institutionName = converterNumero("institution", expense.institution_id);
             const methodName = converterNumero("method", expense.method_id);
@@ -140,7 +151,51 @@ async function buscarGastos() {
             methodCell.textContent = methodName;
             valueCell.textContent = "R$" + expense.value;
             statusCell.textContent = statusName;
+
+
             editButton.textContent = 'Editar';
+            editButton.dataset.expenseId = expense.id;
+            
+            editButton.addEventListener('click', () => {
+                editingExpenseId = editButton.dataset.expenseId;
+
+                document.getElementById('expense-title').value = expense.title;
+                document.getElementById('expense-value').value = expense.value;
+                document.getElementById('expense-month').value = expense.expense_month_id;
+                document.getElementById('expense-year').value = expense.expense_year;
+                document.getElementById('expense-category').value = expense.category_id;
+                document.getElementById('expense-institution').value = expense.institution_id;
+                document.getElementById('expense-method').value = expense.method_id;
+
+                    document.getElementById('submit-expense').textContent = 'Salvar alterações';
+                    document.getElementById('expense-paid-group').style.display = '';
+            });
+
+
+            deleteButton.textContent = 'Excluir';
+            deleteButton.dataset.expenseId = expense.id;
+
+            deleteButton.addEventListener('click', async () => {
+
+                const response = await fetch(
+                    'http://api.remmick.com/api/expense/' + expense.id,
+                    {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer ' + localStorage.getItem('token')
+                        }
+                    }
+                );
+
+                const responseData = await response.json();
+
+                if (!response.ok) {
+                    alert(responseData.message);
+                    return;
+                }
+
+            });
 
             totalGastos += Number(expense.value);
 
@@ -161,6 +216,7 @@ async function buscarGastos() {
 
             actionsCell.appendChild(actionsContainer);
             actionsContainer.appendChild(editButton);
+            actionsContainer.appendChild(deleteButton);
             expenseTableBody.appendChild(row);
 
         });

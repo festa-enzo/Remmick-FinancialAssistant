@@ -23,7 +23,7 @@ $routes = [
     ],
 
     'DELETE' => [
-        '/api/tasks/{id}'      => ['TaskController', 'delete'],
+        '/api/expense/{id}'      => ['ExpenseController', 'deleteExpense'],
     ]
 ];
 

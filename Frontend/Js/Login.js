@@ -46,7 +46,7 @@ if (form) {
                 mensage.textContent = 'Login realizado! Redirecionando...';
 
                 setTimeout(() => {
-                    window.location.href = 'Index.html';   
+                    window.location.href = 'Home.html';   
                 }, 1200);
             } else {
                 mensage.textContent = data.message || 'Email ou senha incorretos.';

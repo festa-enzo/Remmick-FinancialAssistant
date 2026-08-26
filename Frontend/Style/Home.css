@@ -163,7 +163,7 @@ a {
     justify-content: space-between;
     align-items: center;
 
-    margin-bottom: 35px;
+    margin-bottom: 30px;
 }
 
 
@@ -221,6 +221,41 @@ a {
     object-fit: cover;
 }
 
+/* =========================================================
+TÍTULO
+========================================================= */
+
+.page-title {
+display: flex;
+
+
+align-items: center;
+justify-content: space-between;
+
+margin-bottom: 25px;
+
+
+}
+
+.page-title h1 {
+color: #1f2937;
+
+
+font-size: 26px;
+
+margin-bottom: 6px;
+
+
+}
+
+.page-title p {
+color: #9ca3af;
+
+
+font-size: 13px;
+
+
+}
 
 /* =========================================================
    CARDS DE RESUMO

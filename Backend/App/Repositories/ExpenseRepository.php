@@ -63,6 +63,7 @@ class ExpenseRepository extends BaseRepository
 
         return $this->findById($id);
     }
+    
     public function deleteExpense(int $expenseId, int $userId): bool
     {
         $stmt = $this->db->prepare("

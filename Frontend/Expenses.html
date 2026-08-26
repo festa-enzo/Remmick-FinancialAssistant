@@ -37,17 +37,17 @@
 
         <nav class="sidebar-menu">
 
-            <a href="#" class="menu-item">
+            <a href="Home.html" class="menu-item">
                 <span class="menu-icon">⌂</span>
                 <span>Home</span>
             </a>
 
-            <a href="#" class="menu-item active">
+            <a href="Expenses.html" class="menu-item active">
                 <span class="menu-icon">▤</span>
                 <span>Gastos</span>
             </a>
 
-            <a href="#" class="menu-item">
+            <a href="Incomes.html" class="menu-item">
                 <span class="menu-icon">▥</span>
                 <span>Receitas</span>
             </a>
@@ -453,7 +453,24 @@
                         <span class="input-error" id="method-error"></span>
 
                     </div>
+                    <!-- Status do pagamento -->
+                    <div class="form-group" id="expense-paid-group" style="display: none;">
+                        <label for="expense-paid">
+                            Status do pagamento
+                        </label>
 
+                        <label>
+                            <input
+                                type="checkbox"
+                                id="expense-paid"
+                                name="is_paid"
+                                value="1"
+                            >
+                            Gasto pago
+                        </label>
+
+                        <span class="input-error" id="paid-error"></span>
+                    </div>
                 </div>
 
 

@@ -1,0 +1,451 @@
+```html
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receitas - Remmick</title>
+    <link rel="stylesheet" href="Style/Incomes.css">
+
+</head>
+
+<body>
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">R</div>
+            <span>Remmick</span>
+
+        </div>
+
+        <nav class="menu">
+
+            <a href="Home.html" class="menu-item">
+                <span class="menu-icon">⌂</span>
+                <span>Home</span>
+            </a>
+
+            <a href="Expenses.html" class="menu-item">
+                <span class="menu-icon">▤</span>
+                <span>Gastos</span>
+            </a>
+
+            <a href="Incomes.html" class="menu-item active">
+                <span class="menu-icon">▥</span>
+                <span>Receitas</span>
+            </a>
+
+            <a href="#" class="menu-item">
+                <span class="menu-icon">◒</span>
+                <span>Gráficos</span>
+            </a>
+
+            <a href="#" class="menu-item">
+                <span class="menu-icon">♡</span>
+                <span>Poupança</span>
+            </a>
+
+            <a href="#" class="menu-item">
+                <span class="menu-icon">⚙</span>
+                <span>Configurações</span>
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <main class="main-content">
+
+            <!-- =========================
+             HEADER
+        ========================== -->
+
+        <header class="page-header">
+
+            <div class="breadcrumb">
+                <span>Remmick</span>
+                <span>/</span>
+                <strong>Gastos</strong>
+            </div>
+
+            <div class="user-area">
+
+                <div class="user-info">
+                    <span id="user-name">Usuário</span>
+                </div>
+
+                <div class="user-avatar">
+
+                    <img
+                        id="user-avatar"
+                        src="../assets/images/default-avatar.png"
+                        alt="Foto do usuário"
+                    >
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- CABEÇALHO -->
+
+        <header class="page-header">
+
+            <div>
+
+                <h1>Receitas</h1>
+                <p>Gerencie suas receitas e acompanhe suas entradas.</p>
+
+            </div>
+
+            <div class="user-area">
+
+                <span>Usuário</span>
+
+                <div class="user-photo">
+                    Foto
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- CARDS -->
+
+        <section class="summary-cards">
+
+            <div class="summary-card">
+
+                <div class="card-top">
+
+                    <span>Receita do mês</span>
+
+                    <div class="card-icon">
+                        ↑
+                    </div>
+
+                </div>
+
+                <strong>R$ 0,00</strong>
+                <p>Total de receitas registradas</p>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="card-top">
+
+                    <span>Receitas recebidas</span>
+
+                    <div class="card-icon">
+                        ✓
+                    </div>
+
+                </div>
+
+                <strong>R$ 0,00</strong>
+                <p>Total de receitas já recebidas</p>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="card-top">
+
+                    <span>Receitas pendentes</span>
+
+                    <div class="card-icon">
+                        !
+                    </div>
+
+                </div>
+
+                <strong>R$ 0,00</strong>
+                <p>Total ainda não recebido</p>
+
+            </div>
+
+        </section>
+
+
+        <!-- NOVA RECEITA -->
+
+        <section class="content-card">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>Nova receita</h2>
+                    <p>Adicione uma nova entrada ao seu controle financeiro.</p>
+
+                </div>
+
+            </div>
+
+
+            <form class="income-form">
+
+                <div class="form-group full-width">
+
+                    <label for="income-name">
+                        Nome da receita
+                    </label>
+
+                    <input
+                        type="text"
+                        id="income-name"
+                        placeholder="Ex.: Salário"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="income-value">
+                        Valor
+                    </label>
+
+                    <input
+                        type="text"
+                        id="income-value"
+                        placeholder="0,00"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="income-month">
+                        Mês
+                    </label>
+
+                    <select id="income-month">
+
+                        <option value="">
+                            Selecione
+                        </option>
+
+                        <option>Janeiro</option>
+                        <option>Fevereiro</option>
+                        <option>Março</option>
+                        <option>Abril</option>
+                        <option>Maio</option>
+                        <option>Junho</option>
+                        <option>Julho</option>
+                        <option>Agosto</option>
+                        <option>Setembro</option>
+                        <option>Outubro</option>
+                        <option>Novembro</option>
+                        <option>Dezembro</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="income-year">
+                        Ano
+                    </label>
+
+                    <input
+                        type="number"
+                        id="income-year"
+                        value="2026"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="income-type">
+                        Tipo de receita
+                    </label>
+
+                    <select id="income-type">
+
+                        <option value="">
+                            Selecione
+                        </option>
+
+                        <option>Salário</option>
+                        <option>Freelance</option>
+                        <option>Vendas</option>
+                        <option>Investimentos</option>
+                        <option>Outros</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="income-source">
+                        Fonte da receita
+                    </label>
+
+                    <select id="income-source">
+
+                        <option value="">
+                            Selecione
+                        </option>
+
+                        <option>Empresa</option>
+                        <option>Cliente</option>
+                        <option>Loja</option>
+                        <option>Banco</option>
+                        <option>Outros</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="income-status">
+                        Status
+                    </label>
+
+                    <select id="income-status">
+
+                        <option value="">
+                            Selecione
+                        </option>
+
+                        <option>Recebida</option>
+                        <option>Pendente</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="reset"
+                        class="btn-secondary"
+                    >
+                        Limpar
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn-primary"
+                    >
+                        Adicionar receita
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- ENTRADAS + NOTAS -->
+
+        <section class="bottom-grid">
+
+
+            <!-- ENTRADAS -->
+
+            <div class="content-card entries-card">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2>Entradas</h2>
+                        <p>Suas receitas registradas no mês.</p>
+
+                    </div>
+
+                    <select class="month-filter">
+
+                        <option value="1">Janeiro</option>
+                        <option value="2">Fevereiro</option>
+                        <option value="3">Março</option>
+                        <option value="4">Abril</option>
+                        <option value="5">Maio</option>
+                        <option value="6">Junho</option>
+                        <option value="7">Julho</option>
+                        <option value="8">Agosto</option>
+                        <option value="9">Setembro</option>
+                        <option value="10">Outubro</option>
+                        <option value="11">Novembro</option>
+                        <option value="12">Dezembro</option>
+
+                    </select>
+                    
+
+                </div>
+
+
+                <div class="entries-list">
+
+                    <!-- As receitas serão adicionadas dinamicamente aqui -->
+
+                </div>
+
+            </div>
+
+
+            <!-- NOTAS -->
+
+            <div class="content-card notes-card">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2>Notas</h2>
+                        <p>Observações sobre suas receitas.</p>
+
+                    </div>
+
+                </div>
+
+
+                <textarea
+                    class="notes"
+                    placeholder="Escreva uma observação..."
+                ></textarea>
+
+
+                <div class="notes-footer">
+
+                    <button class="btn-primary">
+                        Salvar nota
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>
+

@@ -132,6 +132,15 @@ class ExpenseService
 
     public function deleteExpense(int $expenseId, int $userId)
     {
-        // Chamar o repository
+        if ($expenseId <= 0) {
+            throw new Exception('Gasto inválido');
+        }
+        if (!isset($userId)) {
+            throw new Exception('Usuário não identificado');
+        }
+
+        return $this->expenseRepository->deleteExpense($expenseId, $userId);
+
+
     }
 }

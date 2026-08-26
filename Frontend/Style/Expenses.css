@@ -539,13 +539,37 @@ grid-column: span 2;
 
 .form-group label {
 color: #374151;
-
-
 font-size: 13px;
-
 font-weight: 600;
+}
 
+#expense-paid-group > label:last-of-type {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    width: fit-content;
+    padding: 10px 14px;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    background: #fff;
+    color: #374151;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
 
+#expense-paid-group > label:last-of-type:hover {
+    border-color: #c7d2fe;
+    background: #fafaff;
+}
+
+#expense-paid {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    accent-color: #6366f1;
+    cursor: pointer;
 }
 
 .form-group input,

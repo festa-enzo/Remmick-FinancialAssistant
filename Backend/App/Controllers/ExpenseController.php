@@ -70,6 +70,32 @@ class ExpenseController {
 
     }
 
+    public function deleteExpense(int $expenseId){
+    try {
+        $userId = Auth::requireAuth();
+
+        $expense = $this->expenseService->deleteExpense($expenseId, $userId);
+
+        Response::json([
+            'success' => true,
+            'data' => $expense
+        ], 200);
+
+        } catch (JsonException $e) {
+            Response::json([
+                'success' => false,
+                'message' => 'JSON inválido'
+            ], 400);
+
+        } catch (Exception $e) {
+            Response::json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+
+    }
+
     public function findByMonth() {
         try {
             $data = $_GET;
