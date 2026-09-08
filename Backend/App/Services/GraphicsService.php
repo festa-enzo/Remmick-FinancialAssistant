@@ -73,4 +73,22 @@ class GraphicsService
 
         return $monthExpense;
     }
-}   
+
+    public function findExpenseByCategory(int $userId, int $year): array
+    {
+        $result = $this->graphicsRepository->findExpenseByCategory($userId, $year);
+
+        $expenseByCategory = [];
+
+        foreach ($result as $item) {
+
+            $categoryId = $item['category_id'];
+            $total = $item['total'];
+
+            $expenseByCategory[$categoryId] = $total;
+        }
+        
+        return $expenseByCategory;
+    }
+
+}       

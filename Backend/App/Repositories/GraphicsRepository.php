@@ -82,5 +82,23 @@ class GraphicsRepository extends BaseRepository
         return $row ?: null;
     }
 
+    public function findExpenseByCategory(int $user_id, int $expense_year)
+    {
+        $stmt = $this->db->prepare(
+            "SELECT
+                category_id,
+                SUM(value) AS total
+            FROM expenses
+            WHERE user_id = :user_id
+            AND expense_year = :expense_year
+            GROUP BY category_id
+            ORDER BY category_id"
+        );
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->bindValue(':expense_year', $expense_year, PDO::PARAM_INT);
+        $stmt->execute();
+        $row = $stmt->fetchAll();
+        return $row ?: null;
+    }
 
 }

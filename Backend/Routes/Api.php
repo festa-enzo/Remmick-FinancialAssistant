@@ -22,6 +22,7 @@ $routes = [
         '/api/graphics/summary' => ['GraphicsController', 'findFinancialSummary'],
         '/api/graphics/month-income' => ['GraphicsController', 'findMonthIncome'],
         '/api/graphics/month-expense' => ['GraphicsController', 'findMonthExpense'],
+        '/api/graphics/expense-category' => ['GraphicsController', 'findExpenseByCategory'],
     ],
 
     'PUT' => [

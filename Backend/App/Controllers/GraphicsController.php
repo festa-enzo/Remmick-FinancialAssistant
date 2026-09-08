@@ -74,4 +74,25 @@ class GraphicsController {
             ], 400);
         }
     }
+
+    public function findExpenseByCategory() {
+        try {
+            $year = $_GET['year'];
+        
+            $userId = Auth::requireAuth();
+            
+            $result = $this->graphicsService->findExpenseByCategory($userId, $year);
+
+            Response::json([
+                'success' => true,
+                'data' => $result
+            ], 200);
+
+        } catch (Exception $e) {
+            Response::json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
 }
