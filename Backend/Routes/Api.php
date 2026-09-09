@@ -11,6 +11,7 @@ $routes = [
         '/api/income'           => ['IncomeController', 'createIncome'],
         '/api/income/note'           => ['IncomeController', 'createNote'],
         '/api/savings'           => ['SavingController', 'createGoal'],
+        '/api/savings/{id}/movements'           => ['SavingController', 'createMovement'],
         // '/api/logout'   => ['AuthController', 'logout'],
     ],
 
@@ -25,17 +26,20 @@ $routes = [
         '/api/graphics/month-expense' => ['GraphicsController', 'findMonthExpense'],
         '/api/graphics/expense-category' => ['GraphicsController', 'findExpenseByCategory'],
         '/api/savings' => ['SavingController', 'findUserById'],
+        '/api/savings/{id}/movements' => ['SavingController', 'findMovements'],
     ],
 
     'PUT' => [
         '/api/expense/{id}'  => ['ExpenseController', 'updateExpense'],
         '/api/income/{id}'  => ['IncomeController', 'updateIncome'],
         '/api/income/note/{id}'  => ['IncomeController', 'updateNote'],
+        '/api/savings/{id}'  => ['SavingController', 'updateGoal'],
     ],
 
     'DELETE' => [
         '/api/expense/{id}'      => ['ExpenseController', 'deleteExpense'],
         '/api/income/{id}'      => ['IncomeController', 'deleteIncome'],
+        '/api/savings/{id}'      => ['SavingController', 'deleteGoal'],
     ]
 ];
 

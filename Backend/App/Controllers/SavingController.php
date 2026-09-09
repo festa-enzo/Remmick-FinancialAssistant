@@ -40,6 +40,104 @@ class SavingController {
         }
 
     }
+    public function updateGoal(int $id){
+        try {
+        $conteudoBruto = file_get_contents('php://input');
+
+
+            $data = json_decode(
+                $conteudoBruto,
+                true,
+                512,
+                JSON_THROW_ON_ERROR
+            );
+
+            $userId = Auth::requireAuth();
+
+            $goal = $this->savingService->updateGoal(
+                $userId,
+                $id,
+                $data
+            );
+
+            Response::json([
+                'success' => true,
+                'data' => $goal
+            ]);
+
+        } catch (JsonException $e) {
+
+            Response::json([
+                'success' => false,
+                'message' => 'JSON inválido'
+            ], 400);
+
+        } catch (Exception $e) {
+
+            Response::json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+}
+    public function deleteGoal(int $id){
+        try {
+            $userId = Auth::requireAuth();
+
+            $goal = $this->savingService->deleteGoal($id, $userId);
+
+            Response::json([
+                'success' => true,
+                'data' => $goal
+            ], 200);
+
+        } catch (JsonException $e) {
+            Response::json([
+                'success' => false,
+                'message' => 'JSON inválido'
+            ], 400);
+
+        } catch (Exception $e) {
+            Response::json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+
+    }
+
+    public function createMovement(int $id){
+        try {
+            $conteudoBruto = file_get_contents('php://input');
+
+            $data = json_decode(
+                $conteudoBruto,
+                true,
+                512,
+                JSON_THROW_ON_ERROR
+            );
+
+            $userId = Auth::requireAuth();
+
+            $movement = $this->savingService->createMovement($userId, $id, $data);
+
+            Response::json([
+                'success' => true,
+                'data' => $movement
+            ]);
+        } catch (JsonException $e) {
+            Response::json([
+                'success' => false,
+                'message' => 'JSON inválido'
+            ], 400);
+        } catch (Exception $e) {
+            Response::json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
 
     public function findUserById() {
         try {        
@@ -59,6 +157,34 @@ class SavingController {
             ], 400);
 
         } catch (Exception $e) {
+            Response::json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
+    public function findMovements(int $id)
+    {
+        try {
+
+            $userId =
+                Auth::requireAuth();
+
+            $movements =
+                $this->savingService
+                    ->findMovementsByGoalId(
+                        $userId,
+                        $id
+                    );
+
+            Response::json([
+                'success' => true,
+                'data' => $movements ?? []
+            ]);
+
+        } catch (Exception $e) {
+
             Response::json([
                 'success' => false,
                 'message' => $e->getMessage()

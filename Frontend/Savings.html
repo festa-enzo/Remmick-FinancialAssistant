@@ -4,48 +4,32 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Remmick Financial Assistant - Poupança</title>
+<title>Remmick Financial Assistant - Poupança</title>
 
-    <link
-        rel="stylesheet"
-        href="Style/Savings.css"
-    >
+<link rel="stylesheet" href="Style/Savings.css">
+<link rel="icon" type="image/png" href="Images/Logo.png">
 
 </head>
 
-
 <body>
-
 
 <div class="dashboard">
 
-
-    <!-- =====================================================
-         SIDEBAR
-    ====================================================== -->
+<!-- =====================================================
+     SIDEBAR
+====================================================== -->
 
     <aside class="sidebar">
-
 
         <div class="sidebar-header">
 
             <div class="logo">
-
-                <span class="logo-icon">
-                    R
-                </span>
-
-                <span class="logo-name">
-                    Remmick
-                </span>
-
+                <span class="logo-icon">R</span>
+                <span class="logo-name">Remmick</span>
             </div>
 
         </div>
@@ -53,1078 +37,387 @@
 
         <nav class="sidebar-menu">
 
-
-            <a
-                href="Home.html"
-                class="menu-item"
-            >
-
-                <span class="menu-icon">
-                    ⌂
-                </span>
-
-                <span>
-                    Home
-                </span>
-
+            <a href="Home.html" class="menu-item">
+                <span class="menu-icon">⌂</span>
+                <span>Home</span>
             </a>
 
-
-            <a
-                href="Expenses.html"
-                class="menu-item"
-            >
-
-                <span class="menu-icon">
-                    ▤
-                </span>
-
-                <span>
-                    Gastos
-                </span>
-
+            <a href="Expenses.html" class="menu-item">
+                <span class="menu-icon">▤</span>
+                <span>Gastos</span>
             </a>
 
-
-            <a
-                href="Incomes.html"
-                class="menu-item"
-            >
-
-                <span class="menu-icon">
-                    ▥
-                </span>
-
-                <span>
-                    Receitas
-                </span>
-
+            <a href="Incomes.html" class="menu-item">
+                <span class="menu-icon">▥</span>
+                <span>Receitas</span>
             </a>
 
-
-            <a
-                href="Graphics.html"
-                class="menu-item"
-            >
-
-                <span class="menu-icon">
-                    ◒
-                </span>
-
-                <span>
-                    Gráficos
-                </span>
-
+            <a href="Graphics.html" class="menu-item">
+                <span class="menu-icon">◒</span>
+                <span>Gráficos</span>
             </a>
 
-
-            <a
-                href="Savings.html"
-                class="menu-item active"
-            >
-
-                <span class="menu-icon">
-                    ♡
-                </span>
-
-                <span>
-                    Poupança
-                </span>
-
+            <a href="Savings.html" class="menu-item active">
+                <span class="menu-icon">♡</span>
+                <span>Poupança</span>
             </a>
 
-
-            <a
-                href="#"
-                class="menu-item"
-            >
-
-                <span class="menu-icon">
-                    ⚙
-                </span>
-
-                <span>
-                    Configurações
-                </span>
-
+            <a href="#" class="menu-item">
+                <span class="menu-icon">⚙</span>
+                <span>Configurações</span>
             </a>
-
 
         </nav>
 
     </aside>
 
 
+<!-- =====================================================
+     CONTEÚDO PRINCIPAL
+====================================================== -->
 
-    <!-- =====================================================
-         CONTEÚDO PRINCIPAL
-    ====================================================== -->
-
-    <main class="main-content">
-
-
-        <!-- =================================================
-             HEADER
-        ================================================== -->
-
-        <header class="page-header">
+<main class="main-content">
 
 
-            <div class="breadcrumb">
+    <!-- =================================================
+         HEADER
+    ================================================== -->
 
-                <span>
-                    Remmick
+    <header class="page-header">
+
+        <div class="breadcrumb">
+
+            <span>
+                Remmick
+            </span>
+
+            <span>
+                /
+            </span>
+
+            <strong>
+                Poupança
+            </strong>
+
+        </div>
+
+
+        <div class="user-area">
+
+            <div class="user-info">
+
+                <span id="user-name">
+                    Usuário
                 </span>
 
-                <span>
-                    /
+            </div>
+
+
+            <div class="user-avatar">
+
+                <img
+                    id="user-avatar"
+                    src="../assets/images/default-avatar.png"
+                    alt="Foto do usuário"
+                >
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =================================================
+         TÍTULO
+    ================================================== -->
+
+    <section class="page-title">
+
+        <div>
+
+            <h1>
+                Poupança
+            </h1>
+
+            <p>
+                Organize suas metas e acompanhe sua evolução financeira.
+            </p>
+
+        </div>
+
+
+        <button
+            class="primary-button"
+            id="new-goal-button"
+        >
+
+            <span>
+                +
+            </span>
+
+            Nova meta
+
+        </button>
+
+    </section>
+
+
+    <!-- =================================================
+         RESUMO
+    ================================================== -->
+
+    <section class="financial-summary">
+
+
+        <article class="summary-card">
+
+            <div class="summary-card-header">
+
+                <span class="summary-title">
+                    Total guardado
                 </span>
 
-                <strong>
-                    Poupança
-                </strong>
+                <span class="summary-icon">
+                    $
+                </span>
 
             </div>
 
 
-            <div class="user-area">
-
-
-                <div class="user-info">
-
-                    <span id="user-name">
-                        Usuário
-                    </span>
-
-                </div>
-
-
-                <div class="user-avatar">
-
-                    <img
-                        id="user-avatar"
-                        src="../assets/images/default-avatar.png"
-                        alt="Foto do usuário"
-                    >
-
-                </div>
-
-
-            </div>
-
-
-        </header>
-
-
-
-        <!-- =================================================
-             TÍTULO
-        ================================================== -->
-
-        <section class="page-title">
-
-
-            <div>
-
-                <h1>
-                    Poupança
-                </h1>
-
-                <p>
-                    Organize suas metas e acompanhe sua evolução financeira.
-                </p>
-
-            </div>
-
-
-            <button
-                class="primary-button"
-                id="new-goal-button"
+            <div
+                class="summary-value"
+                id="total-saved"
             >
+                R$ 0,00
+            </div>
 
-                <span>
-                    +
+
+            <div class="summary-description">
+                Valor acumulado nas suas metas
+            </div>
+
+        </article>
+
+
+        <article class="summary-card">
+
+            <div class="summary-card-header">
+
+                <span class="summary-title">
+                    Objetivo total
                 </span>
 
-                Nova meta
+                <span class="summary-icon">
+                    ◎
+                </span>
 
-            </button>
+            </div>
 
 
-        </section>
+            <div
+                class="summary-value"
+                id="total-target"
+            >
+                R$ 0,00
+            </div>
 
 
+            <div class="summary-description">
+                Soma dos objetivos das suas metas
+            </div>
 
-        <!-- =================================================
-             RESUMO
-        ================================================== -->
+        </article>
 
-        <section class="financial-summary">
 
+        <article class="summary-card">
 
-            <article class="summary-card">
+            <div class="summary-card-header">
 
+                <span class="summary-title">
+                    Progresso geral
+                </span>
 
-                <div class="summary-card-header">
+                <span class="summary-icon">
+                    ↑
+                </span>
 
-                    <span class="summary-title">
-                        Total guardado
-                    </span>
+            </div>
 
-                    <span class="summary-icon">
-                        $
-                    </span>
 
-                </div>
+            <div
+                class="summary-value"
+                id="overall-progress"
+            >
+                0,0%
+            </div>
 
 
-                <div class="summary-value" id="total-saved">
-                    R$ 0,00
-                </div>
+            <div class="summary-description">
+                Do objetivo total já foi alcançado
+            </div>
 
+        </article>
 
-                <div class="summary-description">
-                    Valor acumulado nas suas metas
-                </div>
 
+    </section>
 
-            </article>
 
+    <!-- =================================================
+         METAS + RITMO
+    ================================================== -->
 
+    <section class="main-grid">
 
-            <article class="summary-card">
 
+        <!-- =============================================
+             MINHAS METAS
+        ============================================== -->
 
-                <div class="summary-card-header">
-
-                    <span class="summary-title">
-                        Objetivo total
-                    </span>
-
-                    <span class="summary-icon">
-                        ◎
-                    </span>
-
-                </div>
-
-
-                <div class="summary-value" id="total-target">
-                    R$ 0,00
-                </div>
-
-
-                <div class="summary-description">
-                    Soma dos objetivos das suas metas
-                </div>
-
-
-            </article>
-
-
-
-            <article class="summary-card">
-
-
-                <div class="summary-card-header">
-
-                    <span class="summary-title">
-                        Progresso geral
-                    </span>
-
-                    <span class="summary-icon">
-                        ↑
-                    </span>
-
-                </div>
-
-
-                <div class="summary-value" id="overall-progress">
-                    0,0%
-                </div>
-
-
-                <div class="summary-description">
-                    Do objetivo total já foi alcançado
-                </div>
-
-
-            </article>
-
-
-        </section>
-
-
-
-        <!-- =================================================
-             METAS + RITMO
-        ================================================== -->
-
-        <section class="main-grid">
-
-
-            <!-- =============================================
-                 MINHAS METAS
-            ============================================== -->
-
-            <article class="card goals-card">
-
-
-                <div class="card-header">
-
-
-                    <div>
-
-                        <h2>
-                            Minhas metas
-                        </h2>
-
-                        <p>
-                            Acompanhe o progresso dos seus objetivos.
-                        </p>
-
-                    </div>
-
-
-                    <span class="goal-count">
-                        3 metas
-                    </span>
-
-
-                </div>
-
-
-
-                <div class="goals-list">
-
-
-                    <!-- META 1 -->
-
-                    <div class="goal-item">
-
-
-                        <div class="goal-top">
-
-
-                            <div class="goal-name-area">
-
-                                <div class="goal-icon">
-                                    ✈
-                                </div>
-
-                                <div>
-
-                                    <strong>
-                                        Viagem
-                                    </strong>
-
-                                    <span>
-                                        Dezembro de 2026
-                                    </span>
-
-                                </div>
-
-                            </div>
-
-
-                            <strong class="goal-percentage">
-                                46%
-                            </strong>
-
-
-                        </div>
-
-
-
-                        <div class="progress-bar">
-
-                            <span
-                                class="progress-fill"
-                                style="width: 46%;"
-                            ></span>
-
-                        </div>
-
-
-
-                        <div class="goal-bottom">
-
-                            <span>
-                                R$ 2.300,00 guardados
-                            </span>
-
-                            <strong>
-                                R$ 5.000,00
-                            </strong>
-
-                        </div>
-
-
-                    </div>
-
-
-
-                    <!-- META 2 -->
-
-                    <div class="goal-item">
-
-
-                        <div class="goal-top">
-
-
-                            <div class="goal-name-area">
-
-                                <div class="goal-icon">
-                                    🛡
-                                </div>
-
-                                <div>
-
-                                    <strong>
-                                        Reserva de emergência
-                                    </strong>
-
-                                    <span>
-                                        Junho de 2027
-                                    </span>
-
-                                </div>
-
-                            </div>
-
-
-                            <strong class="goal-percentage">
-                                50%
-                            </strong>
-
-
-                        </div>
-
-
-
-                        <div class="progress-bar">
-
-                            <span
-                                class="progress-fill"
-                                style="width: 50%;"
-                            ></span>
-
-                        </div>
-
-
-
-                        <div class="goal-bottom">
-
-                            <span>
-                                R$ 4.000,00 guardados
-                            </span>
-
-                            <strong>
-                                R$ 8.000,00
-                            </strong>
-
-                        </div>
-
-
-                    </div>
-
-
-
-                    <!-- META 3 -->
-
-                    <div class="goal-item">
-
-
-                        <div class="goal-top">
-
-
-                            <div class="goal-name-area">
-
-                                <div class="goal-icon">
-                                    💻
-                                </div>
-
-                                <div>
-
-                                    <strong>
-                                        Notebook
-                                    </strong>
-
-                                    <span>
-                                        Março de 2027
-                                    </span>
-
-                                </div>
-
-                            </div>
-
-
-                            <strong class="goal-percentage">
-                                38%
-                            </strong>
-
-
-                        </div>
-
-
-
-                        <div class="progress-bar">
-
-                            <span
-                                class="progress-fill"
-                                style="width: 38%;"
-                            ></span>
-
-                        </div>
-
-
-
-                        <div class="goal-bottom">
-
-                            <span>
-                                R$ 1.150,00 guardados
-                            </span>
-
-                            <strong>
-                                R$ 3.000,00
-                            </strong>
-
-                        </div>
-
-
-                    </div>
-
-
-                </div>
-
-
-            </article>
-
-
-
-            <!-- =============================================
-                 RITMO DA POUPANÇA
-            ============================================== -->
-
-            <article class="card pace-card">
-
-
-                <div class="card-header">
-
-
-                    <div>
-
-                        <h2>
-                            Seu ritmo
-                        </h2>
-
-                        <p>
-                            Acompanhe se está no caminho certo.
-                        </p>
-
-                    </div>
-
-
-                </div>
-
-
-
-                <div class="pace-content">
-
-
-                    <div class="pace-status">
-
-                        <div class="pace-status-icon">
-                            ✓
-                        </div>
-
-                        <div>
-
-                            <strong>
-                                Você está no ritmo!
-                            </strong>
-
-                            <span>
-                                Está acima do valor esperado para suas metas.
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="pace-values">
-
-
-                        <div class="pace-value">
-
-                            <span>
-                                Esperado até agora
-                            </span>
-
-                            <strong>
-                                R$ 7.000,00
-                            </strong>
-
-                        </div>
-
-
-                        <div class="pace-value">
-
-                            <span>
-                                Valor atual
-                            </span>
-
-                            <strong>
-                                R$ 7.450,00
-                            </strong>
-
-                        </div>
-
-
-                    </div>
-
-
-
-                    <div class="pace-highlight">
-
-                        <span>
-                            Acima do esperado
-                        </span>
-
-                        <strong>
-                            + R$ 450,00
-                        </strong>
-
-                    </div>
-
-
-
-                    <div class="monthly-goal">
-
-                        <span>
-                            Para manter o ritmo
-                        </span>
-
-                        <strong>
-                            R$ 450,00 / mês
-                        </strong>
-
-                    </div>
-
-
-                </div>
-
-
-            </article>
-
-
-        </section>
-
-
-
-        <!-- =================================================
-             EVOLUÇÃO + APORTES
-        ================================================== -->
-
-        <section class="charts-grid">
-
-
-            <!-- =============================================
-                 EVOLUÇÃO
-            ============================================== -->
-
-            <article class="card evolution-card">
-
-
-                <div class="card-header">
-
-
-                    <div>
-
-                        <h2>
-                            Evolução da poupança
-                        </h2>
-
-                        <p>
-                            Veja como seu dinheiro guardado evoluiu.
-                        </p>
-
-                    </div>
-
-
-                </div>
-
-
-
-                <div class="evolution-chart">
-
-
-                    <div class="chart-y-axis">
-
-                        <span>
-                            R$ 8.000
-                        </span>
-
-                        <span>
-                            R$ 6.000
-                        </span>
-
-                        <span>
-                            R$ 4.000
-                        </span>
-
-                        <span>
-                            R$ 2.000
-                        </span>
-
-                        <span>
-                            R$ 0
-                        </span>
-
-                    </div>
-
-
-                    <div class="chart-area">
-
-
-                        <div class="chart-grid">
-
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-
-                        </div>
-
-
-                        <div class="line-chart">
-
-                            <div
-                                class="chart-point point-1"
-                                style="bottom: 8%;"
-                            ></div>
-
-                            <div
-                                class="chart-point point-2"
-                                style="bottom: 18%;"
-                            ></div>
-
-                            <div
-                                class="chart-point point-3"
-                                style="bottom: 28%;"
-                            ></div>
-
-                            <div
-                                class="chart-point point-4"
-                                style="bottom: 40%;"
-                            ></div>
-
-                            <div
-                                class="chart-point point-5"
-                                style="bottom: 53%;"
-                            ></div>
-
-                            <div
-                                class="chart-point point-6"
-                                style="bottom: 67%;"
-                            ></div>
-
-                        </div>
-
-
-                        <div class="chart-labels">
-
-                            <span>
-                                Abr
-                            </span>
-
-                            <span>
-                                Mai
-                            </span>
-
-                            <span>
-                                Jun
-                            </span>
-
-                            <span>
-                                Jul
-                            </span>
-
-                            <span>
-                                Ago
-                            </span>
-
-                            <span>
-                                Set
-                            </span>
-
-                        </div>
-
-
-                    </div>
-
-
-                </div>
-
-
-            </article>
-
-
-
-            <!-- =============================================
-                 ÚLTIMOS APORTES
-            ============================================== -->
-
-            <article class="card deposits-card">
-
-
-                <div class="card-header">
-
-
-                    <div>
-
-                        <h2>
-                            Últimos aportes
-                        </h2>
-
-                        <p>
-                            Seus depósitos mais recentes.
-                        </p>
-
-                    </div>
-
-
-                    <a
-                        href="#"
-                        class="view-link"
-                    >
-                        Ver todos
-                    </a>
-
-
-                </div>
-
-
-
-                <div class="deposits-list">
-
-
-                    <div class="deposit-item">
-
-                        <div class="deposit-icon">
-                            +
-                        </div>
-
-                        <div class="deposit-info">
-
-                            <strong>
-                                Viagem
-                            </strong>
-
-                            <span>
-                                05 de Setembro
-                            </span>
-
-                        </div>
-
-                        <strong class="deposit-value">
-                            + R$ 500,00
-                        </strong>
-
-                    </div>
-
-
-
-                    <div class="deposit-item">
-
-                        <div class="deposit-icon">
-                            +
-                        </div>
-
-                        <div class="deposit-info">
-
-                            <strong>
-                                Reserva de emergência
-                            </strong>
-
-                            <span>
-                                28 de Agosto
-                            </span>
-
-                        </div>
-
-                        <strong class="deposit-value">
-                            + R$ 700,00
-                        </strong>
-
-                    </div>
-
-
-
-                    <div class="deposit-item">
-
-                        <div class="deposit-icon">
-                            +
-                        </div>
-
-                        <div class="deposit-info">
-
-                            <strong>
-                                Notebook
-                            </strong>
-
-                            <span>
-                                15 de Agosto
-                            </span>
-
-                        </div>
-
-                        <strong class="deposit-value">
-                            + R$ 300,00
-                        </strong>
-
-                    </div>
-
-
-
-                    <div class="deposit-item">
-
-                        <div class="deposit-icon">
-                            +
-                        </div>
-
-                        <div class="deposit-info">
-
-                            <strong>
-                                Viagem
-                            </strong>
-
-                            <span>
-                                05 de Agosto
-                            </span>
-
-                        </div>
-
-                        <strong class="deposit-value">
-                            + R$ 400,00
-                        </strong>
-
-                    </div>
-
-
-                </div>
-
-
-            </article>
-
-
-        </section>
-
-
-
-        <!-- =================================================
-             SIMULADOR
-        ================================================== -->
-
-        <section class="card simulator-card">
+        <article class="card goals-card">
 
 
             <div class="card-header">
 
-
                 <div>
 
                     <h2>
-                        Simule sua economia
+                        Minhas metas
                     </h2>
 
                     <p>
-                        Descubra quanto poderá guardar ao longo do tempo.
+                        Acompanhe o progresso dos seus objetivos.
                     </p>
 
                 </div>
 
 
+                <span
+                    class="goal-count"
+                    id="goal-count"
+                >
+                    0 metas
+                </span>
+
             </div>
 
 
+            <!--
+                As metas serão inseridas pelo JavaScript.
+                Mantemos a classe goals-list para preservar
+                o CSS existente.
+            -->
 
-            <div class="simulator-content">
+            <div
+                class="goals-list"
+                id="goals-list"
+            ></div>
 
 
-                <div class="simulator-field">
+        </article>
 
-                    <label for="monthly-saving">
-                        Quanto pretende guardar por mês?
-                    </label>
 
-                    <div class="input-wrapper">
+        <!-- =============================================
+             RITMO DA POUPANÇA
+        ============================================== -->
 
-                        <span>
-                            R$
+        <article class="card pace-card">
+
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        Seu ritmo
+                    </h2>
+
+                    <p>
+                        Acompanhe se está no caminho certo.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="pace-content">
+
+
+                <div class="pace-status">
+
+                    <div class="pace-status-icon">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <strong id="pace-status-title">
+                            Calculando...
+                        </strong>
+
+                        <span id="pace-status-description">
+                            Analisando suas metas.
                         </span>
-
-                        <input
-                            type="number"
-                            id="monthly-saving"
-                            value="450"
-                            min="0"
-                            step="50"
-                        >
 
                     </div>
 
                 </div>
 
 
+                <div class="pace-values">
 
-                <div class="simulator-field">
 
-                    <label for="saving-months">
-                        Durante quantos meses?
-                    </label>
+                    <div class="pace-value">
 
-                    <select id="saving-months">
+                        <span>
+                            Esperado até agora
+                        </span>
 
-                        <option value="6">
-                            6 meses
-                        </option>
+                        <strong id="expected-amount">
+                            R$ 0,00
+                        </strong>
 
-                        <option
-                            value="12"
-                            selected
-                        >
-                            12 meses
-                        </option>
+                    </div>
 
-                        <option value="18">
-                            18 meses
-                        </option>
 
-                        <option value="24">
-                            24 meses
-                        </option>
+                    <div class="pace-value">
 
-                        <option value="36">
-                            36 meses
-                        </option>
+                        <span>
+                            Valor atual
+                        </span>
 
-                    </select>
+                        <strong id="current-pace-amount">
+                            R$ 0,00
+                        </strong>
+
+                    </div>
+
 
                 </div>
 
 
+                <div class="pace-highlight">
 
-                <div class="simulator-result">
-
-                    <span>
-                        Você poderá acumular
+                    <span id="pace-highlight-label">
+                        Diferença
                     </span>
 
-                    <strong>
-                        R$ 5.400,00
+                    <strong id="pace-highlight-value">
+                        R$ 0,00
+                    </strong>
+
+                </div>
+
+
+                <div class="monthly-goal">
+
+                    <span>
+                        Para manter o ritmo
+                    </span>
+
+                    <strong id="monthly-required">
+                        R$ 0,00 / mês
                     </strong>
 
                 </div>
@@ -1132,68 +425,359 @@
 
             </div>
 
+        </article>
 
-        </section>
-        <div class="modal" id="goal-modal">
-    <div class="modal-content">
 
-        <div class="modal-header">
-            <h2>Nova meta</h2>
-            <button class="modal-close" id="close-goal-modal">&times;</button>
+    </section>
+
+
+    <!-- =================================================
+         EVOLUÇÃO + APORTES
+    ================================================== -->
+
+    <section class="charts-grid">
+
+
+        <!-- =============================================
+             EVOLUÇÃO
+        ============================================== -->
+
+        <article class="card evolution-card">
+
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        Evolução da poupança
+                    </h2>
+
+                    <p>
+                        Veja como seu dinheiro guardado evoluiu.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="evolution-chart"
+                id="evolution-chart"
+            >
+
+
+                <div
+                    class="chart-y-axis"
+                    id="chart-y-axis"
+                ></div>
+
+
+                <div class="chart-area">
+
+
+                    <div class="chart-grid">
+
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+
+                    </div>
+
+
+                    <div
+                        class="line-chart"
+                        id="line-chart"
+                    ></div>
+
+
+                    <div
+                        class="chart-labels"
+                        id="chart-labels"
+                    ></div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </article>
+
+
+        <!-- =============================================
+             ÚLTIMOS APORTES
+        ============================================== -->
+
+        <article class="card deposits-card">
+
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        Últimos aportes
+                    </h2>
+
+                    <p>
+                        Seus depósitos mais recentes.
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="#"
+                    class="view-link"
+                    id="view-all-deposits"
+                >
+                    Ver todos
+                </a>
+
+            </div>
+
+
+            <div
+                class="deposits-list"
+                id="deposits-list"
+            ></div>
+
+
+        </article>
+
+
+    </section>
+
+
+    <!-- =================================================
+         SIMULADOR
+    ================================================== -->
+
+    <section class="card simulator-card">
+
+
+        <div class="card-header">
+
+            <div>
+
+                <h2>
+                    Simule sua economia
+                </h2>
+
+                <p>
+                    Descubra quanto poderá guardar ao longo do tempo.
+                </p>
+
+            </div>
+
         </div>
 
-        <div class="modal-body">
 
-            <div class="form-group">
-                <label for="goal-name">Nome da meta</label>
-                <input 
-                    type="text" 
-                    id="goal-name" 
-                    placeholder="Ex: Viagem para a Europa"
-                >
+        <div class="simulator-content">
+
+
+            <div class="simulator-field">
+
+                <label for="monthly-saving">
+                    Quanto pretende guardar por mês?
+                </label>
+
+
+                <div class="input-wrapper">
+
+                    <span>
+                        R$
+                    </span>
+
+                    <input
+                        type="number"
+                        id="monthly-saving"
+                        value="450"
+                        min="0"
+                        step="50"
+                    >
+
+                </div>
+
             </div>
 
-            <div class="form-group">
-                <label for="goal-target">Valor objetivo</label>
-                <input 
-                    type="number" 
-                    id="goal-target" 
-                    placeholder="Ex: 5000.00"
-                    step="0.01"
-                >
+
+            <div class="simulator-field">
+
+                <label for="saving-months">
+                    Durante quantos meses?
+                </label>
+
+
+                <select id="saving-months">
+
+                    <option value="6">
+                        6 meses
+                    </option>
+
+                    <option
+                        value="12"
+                        selected
+                    >
+                        12 meses
+                    </option>
+
+                    <option value="18">
+                        18 meses
+                    </option>
+
+                    <option value="24">
+                        24 meses
+                    </option>
+
+                    <option value="36">
+                        36 meses
+                    </option>
+
+                </select>
+
             </div>
 
-            <div class="form-group">
-                <label for="goal-deadline">Prazo</label>
-                <input 
-                    type="date" 
-                    id="goal-deadline"
-                >
+
+            <div class="simulator-result">
+
+                <span>
+                    Você poderá acumular
+                </span>
+
+                <strong id="simulator-result">
+                    R$ 5.400,00
+                </strong>
+
             </div>
+
 
         </div>
 
-        <div class="modal-footer">
-            <p id="goal-message"></p>
-            <button class="secondary-button" id="cancel-goal-modal">
-                Cancelar
-            </button>
 
-            <button class="primary-button" id="create-goal-button">
-                Criar meta
-            </button>
+    </section>
+
+
+    <!-- =================================================
+         MODAL - NOVA META
+    ================================================== -->
+
+    <div
+        class="modal"
+        id="goal-modal"
+    >
+
+        <div class="modal-content">
+
+
+            <div class="modal-header">
+
+                <h2 id="goal-modal-title">
+                    Nova meta
+                </h2>
+
+                <button
+                    class="modal-close"
+                    id="close-goal-modal"
+                >
+                    &times;
+                </button>
+
+            </div>
+
+
+            <div class="modal-body">
+
+
+                <div class="form-group">
+
+                    <label for="goal-name">
+                        Nome da meta
+                    </label>
+
+                    <input
+                        type="text"
+                        id="goal-name"
+                        placeholder="Ex: Viagem para a Europa"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="goal-target">
+                        Valor objetivo
+                    </label>
+
+                    <input
+                        type="number"
+                        id="goal-target"
+                        placeholder="Ex: 5000.00"
+                        step="0.01"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="goal-deadline">
+                        Prazo
+                    </label>
+
+                    <input
+                        type="date"
+                        id="goal-deadline"
+                    >
+
+                </div>
+
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <p id="goal-message"></p>
+
+                <button
+                    class="secondary-button"
+                    id="cancel-goal-modal"
+                >
+                    Cancelar
+                </button>
+
+
+                <button
+                    class="primary-button"
+                    id="create-goal-button"
+                >
+                    Criar meta
+                </button>
+
+            </div>
+
+
         </div>
 
     </div>
+
+
+</main>
+```
+
 </div>
 
-    </main>
-
-
-</div>
-
-
-<script type="module" src="Js/Savings.js"></script>
+<script
+    type="module"
+    src="Js/Savings.js"
+></script>
 
 </body>
 

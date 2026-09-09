@@ -677,6 +677,27 @@ METAS
 
     font-size: 11px;
 }
+.goal-actions {
+display: flex;
+align-items: center;
+gap: 8px;
+margin-top: 12px;
+flex-wrap: wrap;
+}
+
+.goal-actions .secondary-button {
+background: #f3f4f6;
+color: #374151;
+border: 1px solid #d1d5db;
+padding: 8px 12px;
+border-radius: 8px;
+cursor: pointer;
+font-size: 13px;
+}
+
+.goal-actions .secondary-button:hover {
+background: #e5e7eb;
+}
 
 
 /* =========================================================
@@ -874,22 +895,17 @@ EVOLUÇÃO
 
 .evolution-chart {
     width: 100%;
-
     height: 250px;
-
     display: flex;
 }
 
 
 .evolution-chart .chart-y-axis {
     width: 65px;
-
     height: 210px;
 
     display: flex;
-
     flex-direction: column;
-
     justify-content: space-between;
 
     padding-right: 10px;
@@ -897,8 +913,9 @@ EVOLUÇÃO
     text-align: right;
 
     color: #9ca3af;
-
     font-size: 10px;
+
+    flex-shrink: 0;
 }
 
 
@@ -908,6 +925,8 @@ EVOLUÇÃO
     flex: 1;
 
     height: 250px;
+
+    min-width: 0;
 }
 
 
@@ -921,16 +940,15 @@ EVOLUÇÃO
     height: 210px;
 
     display: flex;
-
     flex-direction: column;
-
     justify-content: space-between;
+
+    pointer-events: none;
 }
 
 
 .evolution-chart .chart-grid span {
     width: 100%;
-
     height: 1px;
 
     background: #eef2f7;
@@ -945,36 +963,55 @@ EVOLUÇÃO
 
     top: 0;
     bottom: 40px;
+
+    overflow: visible;
 }
 
 
-.line-chart::before {
-    content: "";
-
+/*
+ * O SVG será criado pelo JavaScript.
+ * Ele ocupa toda a área do gráfico.
+ */
+.line-chart svg {
     position: absolute;
 
-    left: 0;
-    right: 0;
+    inset: 0;
 
-    bottom: 0;
+    width: 100%;
+    height: 100%;
 
-    height: 3px;
-
-    background: #6366f1;
-
-    transform: rotate(-10deg);
-
-    transform-origin: left center;
-
-    opacity: 0.15;
+    overflow: visible;
 }
 
 
+/*
+ * Linha que conecta os pontos.
+ */
+.evolution-line {
+    fill: none;
+
+    stroke: #6366f1;
+
+    stroke-width: 3;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+/*
+ * Pontos da evolução.
+ */
 .chart-point {
     position: absolute;
 
     width: 10px;
     height: 10px;
+
+    transform: translate(
+        -50%,
+        50%
+    );
 
     border-radius: 50%;
 
@@ -983,40 +1020,32 @@ EVOLUÇÃO
     border: 3px solid white;
 
     box-shadow:
-        0 2px 7px rgba(99, 102, 241, 0.25);
+        0 2px 7px rgba(
+            99,
+            102,
+            241,
+            0.25
+        );
+
+    z-index: 2;
+
+    cursor: pointer;
 }
 
 
-.point-1 {
-    left: 0;
+.chart-point:hover {
+    transform:
+        translate(
+            -50%,
+            50%
+        )
+        scale(1.25);
 }
 
 
-.point-2 {
-    left: 20%;
-}
-
-
-.point-3 {
-    left: 40%;
-}
-
-
-.point-4 {
-    left: 60%;
-}
-
-
-.point-5 {
-    left: 80%;
-}
-
-
-.point-6 {
-    right: 0;
-}
-
-
+/*
+ * Labels das datas.
+ */
 .chart-labels {
     position: absolute;
 
@@ -1025,13 +1054,21 @@ EVOLUÇÃO
 
     bottom: 0;
 
+    height: 30px;
+
     display: flex;
 
     justify-content: space-between;
+    align-items: flex-end;
 
     color: #6b7280;
 
     font-size: 11px;
+}
+
+
+.chart-labels span {
+    white-space: nowrap;
 }
 
 
