@@ -11,6 +11,20 @@ const saveNoteButton = document.getElementById('save-note');
 let noteId = null;
 let editingIncomeId = null;
 
+const userNameElement = document.getElementById("user-name");
+
+try {
+    const user = JSON.parse(localStorage.getItem("user")) || {};
+
+    if (userNameElement) {
+        userNameElement.textContent = user.name || "Usuário";
+    }
+} catch {
+    if (userNameElement) {
+        userNameElement.textContent = "Usuário";
+    }
+}
+
 if (incomeForm) {
 
     incomeForm.addEventListener('submit', async (e) => {

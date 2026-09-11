@@ -11,6 +11,19 @@ const pendingExpenses = document.getElementById("pending-expenses");
 let editingExpenseId = null;
 let deletingExpenseId = null;
 
+const userNameElement = document.getElementById("user-name");
+
+try {
+    const user = JSON.parse(localStorage.getItem("user")) || {};
+
+    if (userNameElement) {
+        userNameElement.textContent = user.name || "Usuário";
+    }
+} catch {
+    if (userNameElement) {
+        userNameElement.textContent = "Usuário";
+    }
+}
 
 if (expenseForm) {
     expenseForm.addEventListener('submit', async (e) => {

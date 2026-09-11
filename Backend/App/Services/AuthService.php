@@ -45,6 +45,66 @@ class AuthService {
         return $user;
         }
 
+
+    public function updateUser(int $userId, array $data): bool
+    {
+        if (!isset($data['name'], $data['email'])) {
+            throw new Exception('Dados obrigatórios não informados');
+        }
+
+        $data['name'] = trim($data['name']);
+        $data['email'] = trim($data['email']);
+
+        if (!preg_match('/^[A-Za-zÀ-ÿ ]+$/', $data['name'])) {
+            throw new InvalidArgumentException('Nome inválido, evite números.');
+        }
+
+        if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+            throw new InvalidArgumentException('Email inválido.');
+        }
+
+        $existingUser = $this->authRepository->findByEmail($data['email']);
+
+        if ($existingUser !== null && (int) $existingUser['id'] !== $userId) {
+            throw new InvalidArgumentException('Email já existente.');
+        }
+
+        $data['userId'] = $userId;
+
+        return $this->authRepository->updateUser($userId, $data);
+    }
+    
+    public function updatePassword(int $userId, array $data): bool
+    {
+        if (empty($data['current_password']) || empty($data['new_password']) || empty($data['confirm_password'])) {
+            throw new InvalidArgumentException('Preencha todos os campos de senha.');
+        }
+
+        if ($data['new_password'] !== $data['confirm_password']) {
+            throw new InvalidArgumentException('A confirmação não corresponde à nova senha.');
+        }
+
+        $user = $this->authRepository->findById($userId);
+
+        if (!$user) {
+            throw new Exception('Usuário não encontrado.');
+        }
+
+        if (!password_verify($data['current_password'], $user['password'])) {
+            throw new InvalidArgumentException('Senha atual incorreta.');
+        }
+
+        $newPassword = $data['new_password'];
+
+        if (strlen($newPassword) < 8 || strlen($newPassword) > 20 || !preg_match('/[A-Z]/', $newPassword) || !preg_match('/[a-z]/', $newPassword) || !preg_match('/[0-9]/', $newPassword) || !preg_match('/[^A-Za-z0-9]/', $newPassword)) {
+            throw new InvalidArgumentException('A nova senha deve ter entre 8 e 20 caracteres, incluindo maiúscula, minúscula, número e símbolo.');
+        }
+
+        $data['password'] = password_hash($newPassword, PASSWORD_DEFAULT);
+
+        return $this->authRepository->updatePassword($userId, $data);
+    }
+
     public function login(array $data): array {
 
         if(!isset($data['email'], $data['password'])){
@@ -70,10 +130,57 @@ class AuthService {
 
         unset($user['password']);
 
+        $refreshToken = $this->jwtHandler->generateRefreshToken($user['id']);
+
+        $expiresAt = date(
+            'Y-m-d H:i:s',
+            time() + (int) $_ENV['JWT_REFRESH_EXPIRATION']
+        );
+
+        $this->authRepository->saveRefreshToken(
+            (int) $user['id'],
+            $refreshToken,
+            $expiresAt
+        );
+
+        setcookie('refresh_token', $refreshToken, [
+            'expires'  => time() + (int) $_ENV['JWT_REFRESH_EXPIRATION'],
+            'path'     => '/',
+            'httponly' => true,
+            'secure'   => false,
+            'samesite' => 'Strict'
+        ]);
+
         return [
             'user' => $user,
             'accessToken' => $accessToken
         ];
+    }
+
+    public function logout(): void
+    {
+        $refreshToken = $_COOKIE['refresh_token'] ?? null;
+
+        if ($refreshToken !== null) {
+            $this->authRepository->revokeRefreshToken($refreshToken);
+        }
+
+        setcookie('refresh_token', '', [
+            'expires'  => time() - 3600,
+            'path'     => '/',
+            'httponly' => true,
+            'secure'   => false,
+            'samesite' => 'Strict'
+        ]);
+    }
+
+    public function deleteUser(int $userId): bool
+    {
+        if ($userId <= 0) {
+            throw new InvalidArgumentException('Usuário inválido.');
+        }
+
+        return $this->authRepository->deleteUser($userId);
     }
 }
 

@@ -17,6 +17,19 @@ const incomeList = document.querySelector(
     '.financial-list-card:nth-child(2) .financial-list'
 );
 
+const userNameElement = document.getElementById("user-name");
+
+try {
+    const user = JSON.parse(localStorage.getItem("user")) || {};
+
+    if (userNameElement) {
+        userNameElement.textContent = user.name || "Usuário";
+    }
+} catch {
+    if (userNameElement) {
+        userNameElement.textContent = "Usuário";
+    }
+}
 
 async function buscarResumoFinanceiro() {
 

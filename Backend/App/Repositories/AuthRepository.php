@@ -23,6 +23,44 @@ class AuthRepository extends BaseRepository
         return $this->create($data);
     }
 
+    public function updateUser(int $userId, array $data): bool
+    {
+        $stmt = $this->db->prepare("
+            UPDATE users
+            SET
+                name = :name,
+                email = :email
+            WHERE
+                id = :id
+        ");
+
+        $stmt->execute([
+            ':id' => $data['userId'],
+            ':name' => $data['name'],
+            ':email' => $data['email']
+        ]);
+
+        return $stmt->rowCount() > 0;
+    }
+
+    public function updatePassword(int $userId, array $data): bool
+    {
+        $stmt = $this->db->prepare("
+            UPDATE users
+            SET
+                password = :password
+            WHERE
+                id = :id
+        ");
+
+        $stmt->execute([
+            ':id' => $userId,
+            ':password' => $data['password']
+        ]);
+
+        return $stmt->rowCount() > 0;
+    }
+
     public function saveRefreshToken(int $userId, string $token, string $expiresAt): void
     {
         // Remove tokens antigos do user
@@ -61,5 +99,33 @@ class AuthRepository extends BaseRepository
         $this->db->prepare(
             "DELETE FROM refresh_tokens WHERE refresh_token = :token"
         )->execute([':token' => $token]);
+    }
+
+    public function deleteUser(int $userId): bool
+    {
+        try {
+            $this->db->beginTransaction();
+
+            $stmt = $this->db->prepare("DELETE FROM refresh_tokens WHERE user_id = :user_id");
+            $stmt->execute([':user_id' => $userId]);
+
+            $stmt = $this->db->prepare("DELETE FROM users WHERE id = :id");
+            $stmt->execute([':id' => $userId]);
+
+            $deleted = $stmt->rowCount() > 0;
+
+            if (!$deleted) {
+                $this->db->rollBack();
+                return false;
+            }
+            $this->db->commit();
+            return true;
+
+        } catch (Exception $e) {
+            if ($this->db->inTransaction()) {
+                $this->db->rollBack();
+            }
+            throw $e;
+        }
     }
 }

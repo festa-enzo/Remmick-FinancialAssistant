@@ -6,13 +6,13 @@ $routes = [
     // Auth
     'POST' => [
         '/api/register' => ['AuthController', 'register'],
+        '/api/logout' => ['AuthController', 'logout'],
         '/api/login'    => ['AuthController', 'login'],
         '/api/expense'           => ['ExpenseController', 'createExpense'],
         '/api/income'           => ['IncomeController', 'createIncome'],
         '/api/income/note'           => ['IncomeController', 'createNote'],
         '/api/savings'           => ['SavingController', 'createGoal'],
         '/api/savings/{id}/movements'           => ['SavingController', 'createMovement'],
-        // '/api/logout'   => ['AuthController', 'logout'],
     ],
 
     'GET' => [
@@ -31,6 +31,8 @@ $routes = [
     ],
 
     'PUT' => [
+        '/api/setting/user'  => ['AuthController', 'updateUser'],
+        '/api/setting/password' => ['AuthController', 'updatePassword'],
         '/api/expense/{id}'  => ['ExpenseController', 'updateExpense'],
         '/api/income/{id}'  => ['IncomeController', 'updateIncome'],
         '/api/income/note/{id}'  => ['IncomeController', 'updateNote'],
@@ -41,6 +43,7 @@ $routes = [
         '/api/expense/{id}'      => ['ExpenseController', 'deleteExpense'],
         '/api/income/{id}'      => ['IncomeController', 'deleteIncome'],
         '/api/savings/{id}'      => ['SavingController', 'deleteGoal'],
+        '/api/setting/user' => ['AuthController', 'deleteUser'],
     ]
 ];
 
