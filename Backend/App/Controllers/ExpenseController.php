@@ -122,6 +122,7 @@ class ExpenseController {
             ], 400);
         }
     }
+
     public function findByYear() {
         try {
             $data = $_GET;
@@ -148,4 +149,32 @@ class ExpenseController {
             ], 400);
         }
     }
+
+    public function findLatestExpenses() {
+        try {
+            $data = $_GET;
+        
+            $userId = Auth::requireAuth();
+            
+            $result = $this->expenseService->findLatestExpenses($userId);
+
+            Response::json([
+                'success' => true,
+                'data' => $result
+            ], 200);
+
+        } catch (JsonException $e) {
+            Response::json([
+                'success' => false,
+                'message' => 'JSON inválido'
+            ], 400);
+
+        } catch (Exception $e) {
+            Response::json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
 }

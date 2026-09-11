@@ -27,6 +27,15 @@ class ExpenseService
 
 
         return $this->expenseRepository->findByMonth($data['user_id'], $data['expense_month_id'], $data['expense_year']);
+    }
+
+    public function findLatestExpenses(int $userId) 
+    {
+        if (!isset($userId)) {
+            throw new Exception('Dados obrigatórios não informados');
+        }
+
+        return $this->expenseRepository->findLatestExpenses($userId);
 
 
     }

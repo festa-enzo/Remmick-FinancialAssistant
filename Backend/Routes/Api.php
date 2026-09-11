@@ -18,6 +18,7 @@ $routes = [
     'GET' => [
         '/api/expense/month'    => ['ExpenseController', 'findByMonth'],
         '/api/expense/year'    => ['ExpenseController', 'findByYear'],
+        '/api/expense/latest'    => ['ExpenseController', 'findLatestExpenses'],
         '/api/income/month'    => ['IncomeController', 'findByMonth'],
         '/api/income/year'    => ['IncomeController', 'findByYear'],
         '/api/income/note'    => ['IncomeController', 'findNote'],
