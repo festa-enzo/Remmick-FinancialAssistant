@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Configurações - Remmick</title>
+
+    <link rel="stylesheet" href="Style/Settings.css">
+
+    <link rel="icon" type="image/png" href="Images/Logo.png">
+
+</head>
+
+<body>
+
+    <aside class="sidebar">
+
+        <div class="sidebar-header">
+
+            <div class="logo">
+
+                <span class="logo-icon">R</span>
+
+                <span class="logo-name">
+                    Remmick
+                </span>
+
+            </div>
+
+        </div>
+
+        <nav class="sidebar-menu">
+            
+            <a href="Home.html" class="menu-item">
+                <span class="menu-icon">⌂</span>
+                <span>Home</span>
+            </a>
+
+            <a href="Expenses.html" class="menu-item">
+                <span class="menu-icon">▤</span>
+                <span>Gastos</span>
+            </a>
+
+            <a href="Incomes.html" class="menu-item">
+                <span class="menu-icon">▥</span>
+                <span>Receitas</span>
+            </a>
+
+            <a href="Graphics.html" class="menu-item">
+                <span class="menu-icon">◒</span>
+                <span>Gráficos</span>
+            </a>
+
+            <a href="Savings.html" class="menu-item">
+                <span class="menu-icon">♡</span>
+                <span>Poupança</span>
+            </a>
+
+            <a href="Settings.html" class="menu-item active">
+                <span class="menu-icon">⚙</span>
+                <span>Configurações</span>
+            </a>
+        </nav>
+    </aside>
+
+
+    <main class="main-content">
+
+
+        <!-- =========================
+             HEADER
+        ========================== -->
+
+        <header class="page-header">
+
+            <div class="breadcrumb">
+
+                <span>Remmick</span>
+
+                <span>/</span>
+
+                <strong>Configurações</strong>
+
+            </div>
+
+
+            <div class="user-area">
+
+                <div class="user-info">
+
+                    <span id="user-name">
+                        Usuário
+                    </span>
+
+                </div>
+
+
+                <div class="user-avatar">
+
+                    <img
+                        id="user-avatar"
+                        src="../assets/images/default-avatar.png"
+                        alt="Foto do usuário"
+                    >
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =========================
+             TÍTULO
+        ========================== -->
+
+        <section class="page-title">
+
+            <div>
+
+                <h1>Configurações</h1>
+
+                <p>
+                    Gerencie sua conta e as configurações de segurança.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             MINHA CONTA
+        ========================== -->
+
+        <section class="content-card">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>Minha conta</h2>
+
+                    <p>
+                        Gerencie suas informações pessoais.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="account-content">
+
+                <div class="account-profile">
+
+                    <div class="profile-avatar">
+
+                        <img
+                            id="profile-avatar"
+                            src="../assets/images/default-avatar.png"
+                            alt="Foto do usuário"
+                        >
+
+                    </div>
+
+
+                    <div class="profile-info">
+
+                        <strong id="profile-name">
+                            Usuário
+                        </strong>
+
+                        <span id="profile-email">
+                            email@email.com
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn-primary"
+                    id="edit-profile"
+                >
+                    Editar perfil
+                </button>
+
+            </div>
+
+
+            <form
+                class="settings-form"
+                id="profile-form"
+            >
+
+                <div class="form-group">
+
+                    <label for="profile-name-input">
+                        Nome
+                    </label>
+
+                    <input
+                        type="text"
+                        id="profile-name-input"
+                        name="name"
+                        placeholder="Seu nome"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="profile-email-input">
+                        E-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="profile-email-input"
+                        name="email"
+                        placeholder="seu@email.com"
+                    >
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="reset"
+                        class="btn-secondary"
+                        id="cancel-profile"
+                    >
+                        Cancelar
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn-primary"
+                        id="save-profile"
+                    >
+                        Salvar alterações
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- =========================
+             SEGURANÇA
+        ========================== -->
+
+        <section class="content-card">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>Segurança</h2>
+
+                    <p>
+                        Altere sua senha para manter sua conta protegida.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form
+                class="settings-form"
+                id="password-form"
+            >
+
+                <div class="form-group full-width">
+
+                    <label for="current-password">
+                        Senha atual
+                    </label>
+
+                    <input
+                        type="password"
+                        id="current-password"
+                        name="current_password"
+                        placeholder="Digite sua senha atual"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="new-password">
+                        Nova senha
+                    </label>
+
+                    <input
+                        type="password"
+                        id="new-password"
+                        name="new_password"
+                        placeholder="Digite sua nova senha"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="confirm-password">
+                        Confirmar nova senha
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirm-password"
+                        name="confirm_password"
+                        placeholder="Confirme sua nova senha"
+                    >
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="submit"
+                        class="btn-primary"
+                        id="change-password"
+                    >
+                        Alterar senha
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- =========================
+             SESSÃO
+        ========================== -->
+
+        <section class="content-card">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>Sessão</h2>
+
+                    <p>
+                        Encerre o acesso à sua conta neste dispositivo.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="action-row">
+
+                <div class="action-info">
+
+                    <strong>Sair da conta</strong>
+
+                    <span>
+                        Você precisará fazer login novamente para acessar o Remmick.
+                    </span>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn-secondary"
+                    id="logout"
+                >
+                    Sair da conta
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             ZONA DE PERIGO
+        ========================== -->
+
+        <section class="content-card danger-card">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>Zona de perigo</h2>
+
+                    <p>
+                        Ações relacionadas à exclusão permanente da conta.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="action-row">
+
+                <div class="action-info">
+
+                    <strong>Excluir conta</strong>
+
+                    <span>
+                        Essa ação removerá permanentemente sua conta e seus dados.
+                    </span>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn-delete"
+                    id="delete-account"
+                >
+                    Excluir conta
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script type="module" src="Js/Settings.js"></script>
+
+</body>
+
+</html>
+
