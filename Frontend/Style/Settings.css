@@ -342,14 +342,14 @@ body {
 
 .settings-form {
     display: grid;
-
     grid-template-columns: repeat(2, 1fr);
-
     column-gap: 20px;
-
     row-gap: 24px;
-
     margin-top: 24px;
+}
+
+.settings-form.is-hidden {
+    display: none !important;
 }
 
 

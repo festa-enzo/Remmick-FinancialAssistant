@@ -79,7 +79,6 @@ class AuthService {
         if (empty($data['current_password']) || empty($data['new_password']) || empty($data['confirm_password'])) {
             throw new InvalidArgumentException('Preencha todos os campos de senha.');
         }
-
         if ($data['new_password'] !== $data['confirm_password']) {
             throw new InvalidArgumentException('A confirmação não corresponde à nova senha.');
         }
@@ -89,7 +88,6 @@ class AuthService {
         if (!$user) {
             throw new Exception('Usuário não encontrado.');
         }
-
         if (!password_verify($data['current_password'], $user['password'])) {
             throw new InvalidArgumentException('Senha atual incorreta.');
         }
@@ -101,8 +99,12 @@ class AuthService {
         }
 
         $data['password'] = password_hash($newPassword, PASSWORD_DEFAULT);
+        $updated = $this->authRepository->updatePassword($userId, $data);
 
-        return $this->authRepository->updatePassword($userId, $data);
+        if ($updated) {
+            $this->authRepository->revokeAllRefreshTokens($userId);
+        }
+        return $updated;
     }
 
     public function login(array $data): array {
@@ -118,33 +120,12 @@ class AuthService {
         }
 
         $accessToken = $this->jwtHandler->generateToken($user);
-        $refreshToken = $this->jwtHandler->generateRefreshToken($user['id']);
-
-        setcookie('refresh_token', $refreshToken, [
-            'expires'  => time() + $_ENV['JWT_REFRESH_EXPIRATION'], // 7 dias
-            'path'     => '/',
-            'httponly' => true,
-            'secure'   => false,
-            'samesite' => 'Strict'
-        ]);
+        $refreshToken = $this->jwtHandler->generateRefreshToken((int) $user['id']);
 
         unset($user['password']);
 
-        $refreshToken = $this->jwtHandler->generateRefreshToken($user['id']);
-
-        $expiresAt = date(
-            'Y-m-d H:i:s',
-            time() + (int) $_ENV['JWT_REFRESH_EXPIRATION']
-        );
-
-        $this->authRepository->saveRefreshToken(
-            (int) $user['id'],
-            $refreshToken,
-            $expiresAt
-        );
-
         setcookie('refresh_token', $refreshToken, [
-            'expires'  => time() + (int) $_ENV['JWT_REFRESH_EXPIRATION'],
+            'expires' => time() + $this->jwtHandler->getRefreshTtl(),
             'path'     => '/',
             'httponly' => true,
             'secure'   => false,
@@ -161,7 +142,7 @@ class AuthService {
     {
         $refreshToken = $_COOKIE['refresh_token'] ?? null;
 
-        if ($refreshToken !== null) {
+        if (is_string($refreshToken) && $refreshToken !== '') {
             $this->authRepository->revokeRefreshToken($refreshToken);
         }
 
@@ -169,7 +150,7 @@ class AuthService {
             'expires'  => time() - 3600,
             'path'     => '/',
             'httponly' => true,
-            'secure'   => false,
+            'secure'   => false, // Deve corresponder ao cookie criado no login.
             'samesite' => 'Strict'
         ]);
     }
@@ -182,6 +163,22 @@ class AuthService {
 
         return $this->authRepository->deleteUser($userId);
     }
+
+    public function getUserProfile(int $userId): ?array
+    {
+        $user = $this->authRepository->findById($userId);
+
+        if (!$user) {
+            return null;
+        }
+
+        return [
+            'id' => (int) $user['id'],
+            'name' => $user['name'],
+            'email' => $user['email']
+        ];
+    }
+
 }
 
 

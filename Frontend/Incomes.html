@@ -10,6 +10,16 @@
 
     <title>Receitas - Remmick</title>
 
+    <style>
+        html.auth-pending body {
+            visibility: hidden;
+        }
+    </style>
+
+    <script>
+        document.documentElement.classList.add('auth-pending');
+    </script>
+
     <link rel="stylesheet" href="Style/Incomes.css">
     <link rel="icon" type="image/png" href="Images/Logo.png">
 
@@ -503,12 +513,9 @@
     </main>
 
 
-    <script
-        type="module"
-        src="Js/Income.js"
-    ></script>
+    <script type="module" src="Js/Income.js"></script>
 
 </body>
 
 </html>
-```
+

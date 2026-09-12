@@ -39,7 +39,6 @@ if (form) {
 
             if (data.success) {
                 localStorage.setItem("token", data.accessToken);
-                console.log("Salvou:", localStorage.getItem("token"));
                 localStorage.setItem('user', JSON.stringify(data.user));
 
                 mensage.style.color = 'green';

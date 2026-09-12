@@ -1,4 +1,5 @@
 import { converterNumero } from './Converters.js';
+import { apiFetch } from './Api.js';
 const incomeForm = document.getElementById('income-form');
 const incomeFilterMonth = document.getElementById('filter-month');
 const incomeFilterYear = document.getElementById('filter-year');
@@ -50,11 +51,10 @@ if (incomeForm) {
 
         try {
 
-            const response = await fetch(url, {
+            const response = await apiFetch(url, {
                 method: method,
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + localStorage.getItem('token')
                 },
                 body: JSON.stringify(objectForm)
             });
@@ -112,25 +112,17 @@ async function buscarReceitas() {
 
     if (month !== "") {
         params.set("income_month_id", month);
-        response = await fetch(
+        response = await apiFetch(
             'http://api.remmick.com/api/income/month?' + params,
             {
                 method: 'GET',
-                headers: {
-                    'Authorization':
-                        'Bearer ' + localStorage.getItem('token')
-                }
             }
         );
     } else {
-        response = await fetch(
+        response = await apiFetch(
             'http://api.remmick.com/api/income/year?' + params,
             {
                 method: 'GET',
-                headers: {
-                    'Authorization':
-                        'Bearer ' + localStorage.getItem('token')
-                }
             }
         );
     }
@@ -276,16 +268,13 @@ async function buscarReceitas() {
 
             deleteButton.addEventListener('click', async () => {
 
-                const response = await fetch(
+                const response = await apiFetch(
                     'http://api.remmick.com/api/income/' + income.id,
                     {
                         method: 'DELETE',
 
                         headers: {
                             'Content-Type': 'application/json',
-                            'Authorization':
-                                'Bearer ' +
-                                localStorage.getItem('token')
                         }
                     }
                 );
@@ -341,14 +330,10 @@ async function buscarReceitas() {
 }
 async function buscarNota() {
 
-    const response = await fetch(
+    const response = await apiFetch(
         'http://api.remmick.com/api/income/note',
         {
             method: 'GET',
-            headers: {
-                'Authorization':
-                    'Bearer ' + localStorage.getItem('token')
-            }
         }
     );
 
@@ -392,12 +377,10 @@ saveNoteButton.addEventListener('click', async () => {
 
     try {
 
-        const response = await fetch(url, {
+        const response = await apiFetch(url, {
             method: method,
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization':
-                    'Bearer ' + localStorage.getItem('token')
             },
             body: JSON.stringify(objectNote)
         });

@@ -1,3 +1,4 @@
+import { apiFetch } from './Api.js';
 const newGoalButton = document.getElementById('new-goal-button');
 const goalModal = document.getElementById('goal-modal');
 const closeGoalModal = document.getElementById('close-goal-modal');
@@ -126,14 +127,9 @@ cancelGoalModal.addEventListener('click', () => {
 
 async function loadGoals() {
     try {
-        const response = await fetch('http://api.remmick.com/api/savings',
+        const response = await apiFetch('http://api.remmick.com/api/savings',
             {
                 method: 'GET',
-                headers: {
-                    'Authorization':
-                        'Bearer ' +
-                        localStorage.getItem('token')
-                }
             }
         );
         const responseData =
@@ -475,14 +471,10 @@ async function addMovement(goal, value) {
         const movementDate =
             today.toISOString().split('T')[0];
 
-        const response = await fetch(`http://api.remmick.com/api/savings/${goal.id}/movements`,
+        const response = await apiFetch(`http://api.remmick.com/api/savings/${goal.id}/movements`,
             {
                 method: 'POST',
                 headers: {
-                    'Authorization':
-                        'Bearer ' +
-                        localStorage.getItem('token'),
-
                     'Content-Type':
                         'application/json'
                 },
@@ -540,14 +532,9 @@ async function getGoalMovements(goalId) {
 
     try {
 
-        const response = await fetch(`http://api.remmick.com/api/savings/${goalId}/movements`,
+        const response = await apiFetch(`http://api.remmick.com/api/savings/${goalId}/movements`,
             {
                 method: 'GET',
-                headers: {
-                    'Authorization':
-                        'Bearer ' +
-                        localStorage.getItem('token')
-                }
             }
         );
 
@@ -1217,12 +1204,11 @@ createGoalButton.addEventListener('click', async (e) => {
 
         if (editingGoalId !== null) {
 
-            response = await fetch(
+            response = await apiFetch(
                 `http://api.remmick.com/api/savings/${editingGoalId}`,
                 {
                     method: 'PUT',
                     headers: {
-                        'Authorization': 'Bearer ' + localStorage.getItem('token'),
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(goal)
@@ -1231,12 +1217,11 @@ createGoalButton.addEventListener('click', async (e) => {
 
         } else {
 
-            response = await fetch(
+            response = await apiFetch(
                 'http://api.remmick.com/api/savings',
                 {
                     method: 'POST',
                     headers: {
-                        'Authorization': 'Bearer ' + localStorage.getItem('token'),
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(goal)
@@ -1332,11 +1317,10 @@ createGoalButton.addEventListener('click', async (e) => {
         if (!confirmed) return;
 
         try {
-            const response = await fetch(
+            const response = await apiFetch(
                 `http://api.remmick.com/api/savings/${goalId}`,
                 {
                     method: 'DELETE',
-                    headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}
                 }
             );
 

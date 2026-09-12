@@ -186,4 +186,32 @@ class AuthController {
             ], 400);
         }
     }
+
+    public function getUserProfile(): void
+    {
+        try {
+            $userId = Auth::requireAuth();
+
+            $user = $this->authService->getUserProfile($userId);
+
+            if ($user === null) {
+                Response::json([
+                    'success' => false,
+                    'message' => 'Usuário não encontrado.'
+                ], 404);
+                return;
+            }
+
+            Response::json([
+                'success' => true,
+                'data' => $user
+            ], 200);
+
+        } catch (Exception $e) {
+            Response::json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
 }

@@ -1,4 +1,5 @@
 import { converterNumero } from './Converters.js';
+import { apiFetch } from './Api.js';
 const API_URL = 'http://api.remmick.com/api';
 const userName = document.getElementById('user-name');
 const currentBalance = document.getElementById('current-balance');
@@ -31,41 +32,19 @@ function formatCurrency(value) {
         currency: 'BRL'
     });
 }
+async function apiGetJson(url) {
+    const response = await apiFetch(url);
 
-function getToken() {
-    return localStorage.getItem('token');
-}
+    if (!response) return null;
 
-
-function handleUnauthorized() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    window.location.href = 'Login.html';
-}
-
-async function apiFetch(url) {
-    const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-            'Authorization': 'Bearer ' + getToken()
-        }
-    });
-
-    if (response.status === 401) {
-        handleUnauthorized();
-        return null;
-    }
-    
-    const responseData =
-        await response.json();
+    const responseData = await response.json();
 
     if (!response.ok) {
-
         throw new Error(
-            responseData.message ||
-            'Erro ao consultar a API'
+            responseData.message || 'Erro ao consultar a API'
         );
     }
+
     return responseData;
 }
 
@@ -111,7 +90,7 @@ async function buscarReceitasMes(year, month) {
             income_month_id: month
         });
 
-    const responseData = await apiFetch(`${API_URL}/income/month?${params}`);
+    const responseData = await apiGetJson(`${API_URL}/income/month?${params}`);
 
     if (!responseData) {
         return [];
@@ -128,7 +107,7 @@ async function buscarGastosMes(year, month) {
         });
 
     const responseData =
-        await apiFetch(`${API_URL}/expense/month?${params}`);
+        await apiGetJson(`${API_URL}/expense/month?${params}`);
 
     if (!responseData) {
         return [];
@@ -162,8 +141,8 @@ async function carregarResumoAtual() {
     }
     try {
         const [responseReceitas, responseGastos] = await Promise.all([
-            apiFetch(`${API_URL}/income/year?income_year=${year}`),
-            apiFetch(`${API_URL}/expense/year?expense_year=${year}`)
+            apiGetJson(`${API_URL}/income/year?income_year=${year}`),
+            apiGetJson(`${API_URL}/expense/year?expense_year=${year}`)
         ]);
 
         if (!responseReceitas || !responseGastos) {
@@ -188,7 +167,7 @@ async function carregarResumoAtual() {
 
 async function carregarUltimosGastos() {
     try {
-        const responseData = await apiFetch(
+        const responseData = await apiGetJson(
             `${API_URL}/expense/latest`
         );
         if (!responseData) {

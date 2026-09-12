@@ -1,4 +1,5 @@
 import { converterNumero } from './Converters.js';
+import { apiFetch } from './Api.js';
 const expenseForm = document.getElementById('expense-form');
 const expenseMessage = document.getElementById('expense-form-message');
 const expenseFilterMonth = document.getElementById("filter-month");
@@ -41,15 +42,16 @@ if (expenseForm) {
     }
       
     try {
-    const response = await fetch(url, {
+    const response = await apiFetch(url, {
         method: method,
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': "Bearer " + localStorage.getItem('token')
          },
         body: JSON.stringify(objectForm)
-    })            
-    
+    })    
+
+    if (!response) return;
+
     const responseData = await response.json();
     
     if (!response.ok) {
@@ -87,26 +89,22 @@ async function buscarGastos() {
 
     if(month !== ""){
         params.set("expense_month_id", month)
-        response = await fetch(
+        response = await apiFetch(
             'http://api.remmick.com/api/expense/month?' + params,
         {
             method: 'GET',
-            headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
-        }
         }
         );
     } else {
-        response = await fetch(
+        response = await apiFetch(
             'http://api.remmick.com/api/expense/year?' + params,
         {
             method: 'GET',
-            headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
-        }
         }
         );        
     }
+
+    if (!response) return;
 
     const responseData = await response.json();
 
@@ -190,16 +188,16 @@ async function buscarGastos() {
 
             deleteButton.addEventListener('click', async () => {
 
-                const response = await fetch(
+                const response = await apiFetch(
                     'http://api.remmick.com/api/expense/' + expense.id,
                     {
                         method: 'DELETE',
                         headers: {
                             'Content-Type': 'application/json',
-                            'Authorization': 'Bearer ' + localStorage.getItem('token')
                         }
                     }
                 );
+                if (!response) return;
 
                 const responseData = await response.json();
 

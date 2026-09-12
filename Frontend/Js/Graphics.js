@@ -1,4 +1,5 @@
 import { converterNumero } from './Converters.js';
+import { apiFetch } from './Api.js';
 const totalIncome = document.getElementById('month-incomes');
 const totalExpense = document.getElementById('month-expenses');
 const balance = document.getElementById('month-balance');
@@ -35,15 +36,13 @@ async function buscarResumoFinanceiro() {
 
     const year = graphicsPeriod.value;
 
-    const response = await fetch(
+    const response = await apiFetch(
         `http://api.remmick.com/api/graphics/summary?year=${year}`,
         {
             method: 'GET',
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
-            }
         }
     );
+    if (!response) return;
 
     const result = await response.json();
 
@@ -63,15 +62,13 @@ async function buscarReceitasMensais() {
 
     const year = graphicsPeriod.value;
 
-    const response = await fetch(
+    const response = await apiFetch(
         `http://api.remmick.com/api/graphics/month-income?year=${year}`,
         {
             method: 'GET',
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
-            }
         }
     );
+    if (!response) return;
 
     const result = await response.json();
 
@@ -100,15 +97,13 @@ async function buscarGastosMensais() {
 
     const year = graphicsPeriod.value;
 
-    const response = await fetch(
+    const response = await apiFetch(
         `http://api.remmick.com/api/graphics/month-expense?year=${year}`,
         {
             method: 'GET',
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
-            }
         }
     );
+    if (!response) return;
 
     const result = await response.json();
 
@@ -133,15 +128,13 @@ async function buscarGastosMensais() {
 async function buscarGastosPorCategoria() {
     const year = graphicsPeriod.value;
 
-    const response = await fetch(
+    const response = await apiFetch(
         `http://api.remmick.com/api/graphics/expense-category?year=${year}`,
         {
             method: 'GET',
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
-            }
         }
     );
+    if (!response) return;
 
     const result = await response.json();
 
@@ -174,15 +167,13 @@ async function buscarGastosPorCategoria() {
 async function buscarDistribuicaoGastos() {
     const year = graphicsPeriod.value;
 
-    const response = await fetch(
+    const response = await apiFetch(
         `http://api.remmick.com/api/graphics/expense-category?year=${year}`,
         {
             method: 'GET',
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
-            }
         }
     );
+    if (!response) return;
 
     const result = await response.json();
 
@@ -270,15 +261,13 @@ async function buscarDistribuicaoGastos() {
 async function buscarPrincipaisGastos() {
     const year = graphicsPeriod.value;
 
-    const response = await fetch(
+    const response = await apiFetch(
         `http://api.remmick.com/api/expense/year?expense_year=${year}`,
         {
             method: 'GET',
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
-            }
         }
     );
+    if (!response) return;
 
     const result = await response.json();
 
@@ -350,15 +339,13 @@ async function buscarPrincipaisGastos() {
     async function buscarPrincipaisReceitas() {
     const year = graphicsPeriod.value;
 
-    const response = await fetch(
+    const response = await apiFetch(
         `http://api.remmick.com/api/income/year?income_year=${year}`,
         {
             method: 'GET',
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
-            }
         }
     );
+    if (!response) return;
 
     const result = await response.json();
 

@@ -10,6 +10,16 @@
 
     <title>Configurações - Remmick</title>
 
+    <style>
+        html.auth-pending body {
+            visibility: hidden;
+        }
+    </style>
+
+    <script>
+        document.documentElement.classList.add('auth-pending');
+    </script>
+
     <link rel="stylesheet" href="Style/Settings.css">
 
     <link rel="icon" type="image/png" href="Images/Logo.png">
@@ -195,7 +205,7 @@
 
 
             <form
-                class="settings-form"
+                class="settings-form is-hidden"
                 id="profile-form"
             >
 

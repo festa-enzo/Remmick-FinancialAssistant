@@ -28,6 +28,7 @@ $routes = [
         '/api/graphics/expense-category' => ['GraphicsController', 'findExpenseByCategory'],
         '/api/savings' => ['SavingController', 'findUserById'],
         '/api/savings/{id}/movements' => ['SavingController', 'findMovements'],
+        '/api/setting/user' => ['AuthController', 'getUserProfile'],
     ],
 
     'PUT' => [

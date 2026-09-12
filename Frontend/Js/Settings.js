@@ -1,26 +1,17 @@
-// Js/Settings.js
-
+import { apiFetch } from './Api.js';
 const API_BASE = "http://api.remmick.com/api";
-
-// -------------------------
-// Elementos do HTML
-// -------------------------
-
 const profileForm = document.getElementById("profile-form");
 const nameInput = document.getElementById("profile-name-input");
 const emailInput = document.getElementById("profile-email-input");
 const editProfileButton = document.getElementById("edit-profile");
 const cancelProfileButton = document.getElementById("cancel-profile");
 const saveProfileButton = document.getElementById("save-profile");
-
 const passwordForm = document.getElementById("password-form");
 const currentPasswordInput = document.getElementById("current-password");
 const newPasswordInput = document.getElementById("new-password");
 const confirmPasswordInput = document.getElementById("confirm-password");
-
 const logoutButton = document.getElementById("logout");
 const deleteAccountButton = document.getElementById("delete-account");
-
 const userNameElement = document.getElementById("user-name");
 const profileNameElement = document.getElementById("profile-name");
 const profileEmailElement = document.getElementById("profile-email");
@@ -29,8 +20,35 @@ const profileEmailElement = document.getElementById("profile-email");
 // Sessão e requisições
 // -------------------------
 
-function getToken() {
-    return localStorage.getItem("token");
+async function loadUserProfile() {
+    try {
+        const response = await apiFetch(`${API_BASE}/setting/user`);
+
+        if (!response) return;
+
+        const responseData = await response.json();
+
+        if (!response.ok) {
+            throw new Error(
+                responseData.message || 'Erro ao carregar perfil.'
+            );
+        }
+
+        const user = responseData.data;
+
+        nameInput.value = user.name;
+        emailInput.value = user.email;
+
+        originalName = user.name;
+        originalEmail = user.email;
+
+        updateProfileDisplay(user.name, user.email);
+
+    } catch (error) {
+        console.error('Erro ao carregar perfil:', error);
+        document.documentElement.classList.remove('auth-pending');
+        showMessage(profileForm, error.message, true);
+    }
 }
 
 function getStoredUser() {
@@ -47,25 +65,21 @@ function clearSession() {
 }
 
 async function apiRequest(endpoint, options = {}) {
-    const token = getToken();
-
     const headers = {
         ...(options.headers || {})
     };
-
-    if (token) {
-        headers.Authorization = `Bearer ${token}`;
-    }
 
     if (options.body) {
         headers["Content-Type"] = "application/json";
     }
 
-    const response = await fetch(`${API_BASE}${endpoint}`, {
+    const response = await apiFetch(`${API_BASE}${endpoint}`, {
         ...options,
         headers,
         credentials: "include"
     });
+
+    if (!response) return null;
 
     let result = {};
 
@@ -122,8 +136,8 @@ function updateProfileDisplay(name, email) {
 function setProfileEditing(isEditing) {
     nameInput.disabled = !isEditing;
     emailInput.disabled = !isEditing;
-
     editProfileButton.hidden = isEditing;
+    profileForm.classList.toggle("is-hidden", !isEditing);
     cancelProfileButton.hidden = !isEditing;
     saveProfileButton.disabled = !isEditing;
 }
@@ -289,4 +303,8 @@ deleteAccountButton.addEventListener("click", async () => {
         deleteAccountButton.disabled = false;
         alert(error.message);
     }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadUserProfile();
 });

@@ -61,44 +61,52 @@ class AuthRepository extends BaseRepository
         return $stmt->rowCount() > 0;
     }
 
-    public function saveRefreshToken(int $userId, string $token, string $expiresAt): void
-    {
-        // Remove tokens antigos do user
-        $this->db->prepare(
-            "DELETE FROM refresh_tokens WHERE user_id = :user_id"
-        )->execute([':user_id' => $userId]);
-
-        $stmt = $this->db->prepare(
-            "INSERT INTO refresh_tokens (user_id, refresh_token, expires_at, created_at)
-             VALUES (:user_id, :token, :expires_at, NOW())"
-        );
-        $stmt->execute([
-            ':user_id'    => $userId,
-            ':token'      => $token,
-            ':expires_at' => $expiresAt,
-        ]);
-    }
-
     public function findRefreshToken(string $token): ?array
     {
-        $stmt = $this->db->prepare(
-            "SELECT rt.*, u.id AS user_id, u.email
-             FROM refresh_tokens rt
-             JOIN users u ON rt.user_id = u.id
-             WHERE rt.refresh_token = :token AND rt.expires_at > NOW()
-             LIMIT 1"
-        );
-        $stmt->bindValue(':token', $token);
-        $stmt->execute();
-        $row = $stmt->fetch();
+        $tokenHash = hash('sha256', $token);
+
+        $stmt = $this->db->prepare("
+            SELECT rt.*, u.id AS user_id, u.name, u.email
+            FROM refresh_tokens rt
+            JOIN users u ON rt.user_id = u.id
+            WHERE rt.refresh_token = :token_hash
+            AND rt.expires_at > NOW()
+            LIMIT 1
+        ");
+
+        $stmt->execute([
+            ':token_hash' => $tokenHash
+        ]);
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
         return $row ?: null;
     }
 
     public function revokeRefreshToken(string $token): void
     {
-        $this->db->prepare(
-            "DELETE FROM refresh_tokens WHERE refresh_token = :token"
-        )->execute([':token' => $token]);
+        $tokenHash = hash('sha256', $token);
+
+        $stmt = $this->db->prepare("
+            DELETE FROM refresh_tokens
+            WHERE refresh_token = :token_hash
+        ");
+
+        $stmt->execute([
+            ':token_hash' => $tokenHash
+        ]);
+    }
+
+    public function revokeAllRefreshTokens(int $userId): void
+    {
+        $stmt = $this->db->prepare("
+            DELETE FROM refresh_tokens
+            WHERE user_id = :user_id
+        ");
+
+        $stmt->execute([
+            ':user_id' => $userId
+        ]);
     }
 
     public function deleteUser(int $userId): bool
