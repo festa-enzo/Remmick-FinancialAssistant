@@ -2,16 +2,22 @@
 
 use PDO;
 use PDOException;
+use Dotenv\Dotenv;
 
 class Database {
     private static $instance = null;
     private $pdo;
 
-    private function __construct() {
-        $host     = 'localhost';
-        $dbname   = 'remmick_finassist';
-        $user     = 'root';
-        $pass     = 'Uninove@10';   
+    private function __construct()
+    {
+        $dotenv = Dotenv::createImmutable(__DIR__ . '/..');
+        $dotenv->load();
+
+        $host     = $_ENV['DB_HOST'];
+        $port     = $_ENV['DB_PORT'];
+        $dbname   = $_ENV['DB_DATABASE'];
+        $user     = $_ENV['DB_USERNAME'];
+        $pass     = $_ENV['DB_PASSWORD'];
 
         try {
             $this->pdo = new PDO(

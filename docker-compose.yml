@@ -1,0 +1,57 @@
+services:
+
+  backend:
+    build:
+      context: ./Backend
+      dockerfile: Dockerfile
+    container_name: remmick-backend
+    restart: unless-stopped
+    env_file:
+      - ./Backend/.env
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - remmick-network
+
+  mysql:
+    image: mariadb:11
+    container_name: remmick-mysql
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MARIADB_DATABASE: remmick_finassist
+      MARIADB_USER: remmick
+      MARIADB_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./Database/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - remmick-network
+
+  nginx:
+    image: nginx:alpine
+    container_name: remmick-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./Frontend:/usr/share/nginx/html
+      - ./Nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./Backend:/var/www/html/Backend:ro
+    depends_on:
+      - backend
+    networks:
+      - remmick-network
+
+volumes:
+  mysql-data:
+
+networks:
+  remmick-network:
+    driver: bridge
